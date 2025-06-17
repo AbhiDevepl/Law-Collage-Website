@@ -1,67 +1,42 @@
-Here is your **complete, all-in-one `README.md`** file with **everything included inside one file** — no external `.md` files required. It now contains:
-
-✅ Live site
-✅ Setup instructions
-✅ Architecture diagram
-✅ Deployment steps
-✅ SEO guidelines
-✅ Contribution and license
-✅ All content in **one file** (no need for extra guides)
-
----
-
-```md
 <h1 align="center">🎓 SSNLC Law College Website</h1>
 
 <p align="center">
   <a href="https://ssnlc.in">
-    <img src="https://img.shields.io/badge/Live%20Site-ssnlc.in-brightgreen?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Site" />
+    <img src="https://img.shields.io/badge/Live%20Site-ssnlc.in-brightgreen?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Site">
   </a>
   <a href="#">
-    <img src="https://img.shields.io/badge/Frontend-Next.js-blue?style=for-the-badge&logo=next.js&logoColor=white" alt="Frontend" />
+    <img src="https://img.shields.io/badge/Frontend-Next.js-blue?style=for-the-badge&logo=next.js&logoColor=white" alt="Frontend">
   </a>
   <a href="#">
-    <img src="https://img.shields.io/badge/Backend-Express.js-yellow?style=for-the-badge&logo=express&logoColor=black" alt="Backend" />
+    <img src="https://img.shields.io/badge/Backend-Express.js-yellow?style=for-the-badge&logo=express&logoColor=black" alt="Backend">
   </a>
 </p>
 
----
+<hr>
 
-## 🌐 Overview
+<h2>🌐 Overview</h2>
+<p>This is the official website of <strong>SSNLC Law College</strong>, built to serve students, faculty, and the public with fast and useful access to law college services.</p>
+<p><strong>Live Site:</strong> <a href="https://ssnlc.in">https://ssnlc.in</a></p>
 
-This is the official website of **SSNLC Law College**, created to deliver a seamless and informative web experience for students, staff, and visitors.
+<hr>
 
-🔗 **Live Demo:** [https://ssnlc.in](https://ssnlc.in)
-
----
-
-## 🧱 Project Structure
-
-```
-
+<h2>🧱 Project Structure</h2>
+<pre>
 Law-Collage-Website/
-│
 ├── client/     # Frontend - Next.js
 │   ├── pages/
 │   ├── public/
 │   └── ...
-│
 ├── server/     # Backend - Express.js
 │   ├── routes/
-│   ├── controllers/
-│   └── ...
-│
+│   ├── ...
 └── README.md
+</pre>
 
-```
+<hr>
 
----
-
-## 🖼️ System Architecture
-
-```
-
-```
+<h2>🖼️ System Architecture</h2>
+<pre>
          ┌────────────────┐
          │   Frontend     │
          │   (Next.js)    │
@@ -75,182 +50,101 @@ Law-Collage-Website/
          └──────┬─────────┘
                 │
     Database / Third-party APIs
-```
+</pre>
 
-````
+<hr>
 
----
-
-## 🚀 Getting Started
-
-### 📥 Clone the Repository
-
-```bash
+<h2>🚀 Getting Started</h2>
+<h3>📥 Clone the Repository</h3>
+<pre>
 git clone https://github.com/AbhiDevepl/Law-Collage-Website.git
 cd Law-Collage-Website
-````
+</pre>
 
----
-
-## 📦 Installation
-
-### 🖥️ Install Client (Next.js)
-
-```bash
+<h3>🖥️ Install Client (Next.js)</h3>
+<pre>
 cd client
 npm install
-```
+</pre>
 
-### ⚙️ Install Server (Express.js)
-
-```bash
-cd server
+<h3>⚙️ Install Server (Express.js)</h3>
+<pre>
+cd ../server
 npm install
-```
+</pre>
 
----
+<hr>
 
-## 💻 Development
-
-### ▶ Start the Client
-
-```bash
+<h2>💻 Development</h2>
+<h3>▶ Start the Client</h3>
+<pre>
 cd client
 npm run dev
-```
+</pre>
 
-### ▶ Start the Server
-
-```bash
-cd server
+<h3>▶ Start the Server</h3>
+<pre>
+cd ../server
 npm run dev
-```
+</pre>
 
----
+<hr>
 
-## 🏁 Production Build
-
-### ⚙️ Build and Start Client
-
-```bash
+<h2>🏁 Production Build</h2>
+<h3>⚙️ Build and Start Client</h3>
+<pre>
 cd client
 npm run build
 npm start
-```
+</pre>
 
-### ⚙️ Start Server
-
-```bash
-cd server
+<h3>⚙️ Start Server</h3>
+<pre>
+cd ../server
 npm start
-```
+</pre>
 
----
+<hr>
 
-## 📦 Deployment Instructions
+<h2>📦 Deployment Instructions</h2>
+<ol>
+  <li>Install Node.js (LTS), reverse proxy (NGINX/Apache), optional: PM2</li>
+  <li>Run the following:</li>
+</ol>
+<pre>
+git clone https://github.com/AbhiDevepl/Law-Collage-Website.git
+cd client
+npm install
+npm run build
+npm start
+</pre>
+<p>In a separate terminal:</p>
+<pre>
+cd ../server
+npm install
+npm start
+</pre>
+<ol start="3">
+  <li>Connect domain to server and configure SSL</li>
+</ol>
+<hr>
 
-To deploy on a production server:
+<h2>📌 Notes</h2>
+<ul>
+  <li><code>node_modules</code> not included — run <code>npm install</code> in both client and server</li>
+  <li>Default ports: 3000 (frontend), 5000 (backend)</li>
+</ul>
 
-1. **Environment Setup**
-
-   * Use Node.js (LTS version)
-   * Reverse proxy (e.g., NGINX or Apache)
-   * Optional: PM2 for background process management
-
-2. **Steps**
-
-   ```bash
-   git clone https://github.com/AbhiDevepl/Law-Collage-Website.git
-   cd Law-Collage-Website/client
-   npm install
-   npm run build
-   npm start
-   ```
-
-   In a separate terminal:
-
-   ```bash
-   cd ../server
-   npm install
-   npm start
-   ```
-
-3. **Server Configuration**
-
-   * Point your domain (e.g., `https://ssnlc.in`) to the server IP.
-   * Configure SSL using Let's Encrypt or your hosting provider.
-
----
-
-## 🔍 SEO Optimization Guide
-
-To make the site SEO-friendly:
-
-* ✅ Use `<meta>` tags in the `<head>` of every page:
-
-  ```html
-  <meta name="description" content="Official website for SSNLC Law College" />
-  <meta name="keywords" content="Law College, SSNLC, Legal Education" />
-  <meta name="author" content="SSNLC" />
-  ```
-
-* ✅ Add [sitemap.xml](https://www.xml-sitemaps.com/) and `robots.txt` in `public/`.
-
-* ✅ Integrate Open Graph tags:
-
-  ```html
-  <meta property="og:title" content="SSNLC Law College" />
-  <meta property="og:description" content="Official portal of SSNLC Law College" />
-  <meta property="og:image" content="/ssnlc-preview.png" />
-  <meta property="og:url" content="https://ssnlc.in" />
-  ```
-
-* ✅ Use semantic HTML and proper heading structure (`<h1>`, `<h2>`, etc.)
-
----
-
-## 📌 Notes
-
-* `node_modules` are not included.
-  Run `npm install` in both `/client` and `/server` folders before running the project.
-
-* Make sure ports are correctly configured (default: 3000 for client, 5000 for server).
-
----
-
-## 🤝 Contributing
-
-Want to contribute?
-
-1. 🍴 Fork the repo
-2. 👯 Create your feature branch (`git checkout -b feature/YourFeature`)
-3. ✅ Commit your changes (`git commit -m 'Add Some Feature'`)
-4. 🚀 Push to the branch (`git push origin feature/YourFeature`)
-5. 🐬 Open a Pull Request
-
----
-
-## 📄 License
-
-This project is open-source. See `LICENSE` file for more details (you can add MIT, GPL, etc. as needed).
-
----
-
-## 🙋 Contact
-
-For support or inquiries:
-
-* 💬 [Open an issue](https://github.com/AbhiDevepl/Law-Collage-Website/issues)
-* 🌐 [Visit the website](https://ssnlc.in)
-
----
-
-````
+<hr>
 
 
-🟩 **Tips**:
-- Save this content directly as your `README.md` file.
-- Replace the `"LICENSE"` mention with your actual license if needed.
-- You can add screenshots using:
-  ```md
-  ![Homepage Screenshot](./client/public/home-preview.png)
+<h2>📄 License</h2>
+<p>This project is open-source. See the LICENSE file for details.</p>
+
+<hr>
+
+<h2>🙋 Contact</h2>
+<ul>
+  <li><a href="https://github.com/AbhiDevepl/Law-Collage-Website/issues">Open an issue</a></li>
+  <li><a href="https://ssnlc.in">Visit the live website</a></li>
+</ul>
