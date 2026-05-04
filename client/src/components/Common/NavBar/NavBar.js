@@ -63,11 +63,6 @@ export default function Navbar() {
     // Check if window is available (client-side only)
     if (typeof window === 'undefined') return;
     
-    if (window.innerWidth > 768) {
-      setHideHeader(false);
-      return;
-    }
-    
     const currentScrollY = window.scrollY;
     // Use a larger threshold for smoother experience
     const scrollThreshold = 150;
