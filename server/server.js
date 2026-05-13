@@ -5,6 +5,7 @@ const connectDB = require('./src/config/db');
 const adminAuthRoutes = require('./routes/adminAuth.routes');
 const announcementRoutes = require('./routes/announcements.routes');
 const publicRouter = require('./src/route/public.route');
+const healthRoutes = require('./src/routes/health');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
+app.use('/api/health', healthRoutes);
 app.use('/api/admin', adminAuthRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api', publicRouter);

@@ -1,0 +1,159 @@
+version: '3.8'
+
+services:
+  # ============================================================
+  # NGINX REVERSE PROXY
+  # ============================================================
+  nginx:
+    image: nginx:alpine
+    container_name: ssnlc-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl/cert.pem:/etc/nginx/ssl/cert.pem:ro
+      - ./nginx/ssl/key.pem:/etc/nginx/ssl/key.pem:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      client:
+        condition: service_healthy
+      server:
+        condition: service_healthy
+    restart: always
+    networks:
+      - ssnlc_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ============================================================
+  # NEXT.JS FRONTEND
+  # ============================================================
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: ghcr.io/YOUR_USERNAME/Law-Collage-Website/client:latest
+    container_name: ssnlc-client
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=https://ssnlc.in/api
+    expose:
+      - "3000"
+    depends_on:
+      server:
+        condition: service_healthy
+    restart: always
+    networks:
+      - ssnlc_network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================================
+  # EXPRESS.JS BACKEND
+  # ============================================================
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: ghcr.io/YOUR_USERNAME/Law-Collage-Website/server:latest
+    container_name: ssnlc-server
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - FRONTEND_URI=https://ssnlc.in
+      - MONGO_URI=mongodb://ssnlc-mongodb:27017/ssnlc
+      - JWT_SECRET=${JWT_SECRET:-change_this_to_a_secure_random_string}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME:-}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY:-}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET:-}
+    expose:
+      - "5000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: always
+    networks:
+      - ssnlc_network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ============================================================
+  # MONGODB DATABASE
+  # ============================================================
+  mongodb:
+    image: mongo:6
+    container_name: ssnlc-mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=ssnlc
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+    networks:
+      - ssnlc_network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+# ============================================================
+# NETWORKS
+# ============================================================
+networks:
+  ssnlc_network:
+    driver: bridge
+
+# ============================================================
+# VOLUMES (Persistent)
+# ============================================================
+volumes:
+  mongodb_data:
+    driver: local
+  nginx_logs:
+    driver: local
