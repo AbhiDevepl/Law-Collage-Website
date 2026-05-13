@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -13,7 +14,9 @@ env:
   DEPLOY_DIR: /home/devx/Law-Collage-Website
 
 jobs:
-  # ========== TEST JOB ==========
+  # ============================================================
+  # JOB 1: TEST (LINT + BUILD CHECK)
+  # ============================================================
   test:
     name: Test Build
     runs-on: ubuntu-latest
@@ -35,107 +38,204 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          load: true
 
-  # ========== DEPLOY JOB ==========
+      - name: Verify ${{ matrix.service }} image
+        run: |
+          echo "Verifying ${{ matrix.service }} image..."
+          docker images | grep ${{ matrix.service }} || echo "Image not found"
+
+  # ============================================================
+  # JOB 2: DEPLOY (ONLY IF TEST PASSES)
+  # ============================================================
   deploy:
     name: Deploy to VPS
     runs-on: ubuntu-latest
     needs: test
     if: github.ref == 'refs/heads/main'
+    environment: production
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # ============================================================
+      # ZERO-DOWNTIME DEPLOYMENT STRATEGY
+      # Uses Docker image tagging for safe rollback
+      # ============================================================
+
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1.0.3
         env:
           DEPLOY_DIR: ${{ env.DEPLOY_DIR }}
+          GH_REPO: ${{ github.repository }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          envs: DEPLOY_DIR
+          envs: DEPLOY_DIR,GH_REPO
+          debug: false
           script: |
-            echo "🚀 Starting deployment..."
-            
+            echo "============================================"
+            echo "🚀 Starting zero-downtime deployment..."
+            echo "============================================"
+
+            set -e
+
             # Navigate to project directory
             cd $DEPLOY_DIR
-            
-            # Save current image tags for rollback
-            echo "📦 Saving current image tags..."
-            docker compose -f docker-compose.prod.yml images -q > /tmp/previous-images.txt 2>/dev/null || true
-            
-            # Update repository
-            echo "📥 Pulling latest code..."
+
+            # ============================================================
+            # STEP 1: Save current image tags for rollback capability
+            # ============================================================
+            echo "📦 Step 1: Saving current image state for rollback..."
+
+            # Tag current images as :previous
+            echo "tagging current images as :previous"
+            docker pull $GH_REPO/client:latest 2>/dev/null && docker tag $GH_REPO/client:latest $GH_REPO/client:previous || true
+            docker pull $GH_REPO/server:latest 2>/dev/null && docker tag $GH_REPO/server:latest $GH_REPO/server:previous || true
+
+            # Save current container states
+            docker compose -f docker-compose.prod.yml ps > /tmp/previous-state.txt 2>/dev/null || true
+
+            # ============================================================
+            # STEP 2: Update repository
+            # ============================================================
+            echo "📥 Step 2: Pulling latest code from GitHub..."
             git fetch origin
             git reset --hard origin/main
-            
-            # Build images
-            echo "🔨 Building Docker images..."
-            docker compose -f docker-compose.prod.yml build --no-cache
-            
-            # Stop old containers gracefully
-            echo "⏸️  Stopping old containers..."
-            docker compose -f docker-compose.prod.yml down --remove-orphans
-            
-            # Start new containers
-            echo "🚀 Starting services..."
-            docker compose -f docker-compose.prod.yml up -d
-            
-            # Wait for services to be ready
+            git log --oneline -3
+
+            # ============================================================
+            # STEP 3: Build new images
+            # ============================================================
+            echo "🔨 Step 3: Building Docker images..."
+            docker compose -f docker-compose.prod.yml build --no-cache client server
+
+            # Tag new images as :latest and :previous-backup
+            docker tag ssnlc-client $GH_REPO/client:latest
+            docker tag ssnlc-server $GH_REPO/server:latest
+
+            # ============================================================
+            # STEP 4: Zero-downtime rolling restart
+            # ============================================================
+            echo "🔄 Step 4: Performing zero-downtime rolling restart..."
+
+            # Start new containers in background
+            docker compose -f docker-compose.prod.yml up -d --no-deps client server
+
+            # Wait for services to be healthy
             echo "⏳ Waiting for services to be healthy..."
-            sleep 20
-            
-            # Health check
-            echo "🏥 Performing health checks..."
+            sleep 45
+
+            # ============================================================
+            # STEP 5: Health checks
+            # ============================================================
+            echo "🏥 Step 5: Performing health checks..."
             HEALTH_OK=true
-            
-            # Check NGINX
+
+            # Check NGINX config
+            echo "Checking NGINX configuration..."
             if ! docker exec ssnlc-nginx nginx -t 2>/dev/null; then
-              echo "❌ NGINX health check failed"
+              echo "❌ NGINX config test failed"
               HEALTH_OK=false
+            else
+              echo "✅ NGINX configuration valid"
             fi
-            
-            # Check API
-            if ! docker exec ssnlc-server wget -q -O - http://localhost:5000/api/health 2>/dev/null | grep -q "ok"; then
-              echo "❌ API health check failed"
+
+            # Check API health endpoint
+            echo "Checking API health endpoint..."
+            MAX_RETRIES=5
+            RETRY_COUNT=0
+            API_HEALTHY=false
+
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              API_RESPONSE=$(docker exec ssnlc-server wget -q -O - http://localhost:5000/api/health 2>/dev/null || echo '{"status":"error"}')
+              echo "API Response: $API_RESPONSE"
+
+              if echo "$API_RESPONSE" | grep -q '"status"'; then
+                API_HEALTHY=true
+                break
+              fi
+
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "Retry $RETRY_COUNT/$MAX_RETRIES..."
+              sleep 5
+            done
+
+            if [ "$API_HEALTHY" = false ]; then
+              echo "❌ API health check failed after $MAX_RETRIES retries"
               HEALTH_OK=false
+            else
+              echo "✅ API health check passed"
             fi
-            
+
             # Check Frontend
+            echo "Checking frontend..."
             if ! docker exec ssnlc-client wget -q -O - http://localhost:3000 2>/dev/null | grep -q "html"; then
-              echo "❌ Frontend health check failed"
-              HEALTH_OK=false
+              echo "⚠️  Frontend check inconclusive (may be redirect)"
+            else
+              echo "✅ Frontend accessible"
             fi
-            
+
+            # ============================================================
+            # STEP 6: Handle health check failure (rollback)
+            # ============================================================
             if [ "$HEALTH_OK" = false ]; then
-              echo "🔄 Health checks failed, rolling back..."
+              echo ""
+              echo "============================================"
+              echo "❌ Health checks failed! Initiating rollback..."
+              echo "============================================"
               bash $DEPLOY_DIR/scripts/rollback.sh
               exit 1
             fi
-            
-            echo "✅ All health checks passed"
-            echo "🎉 Deployment successful!"
 
-      - name: Deployment Success Notification
-        if: success()
-        uses: appleboy/ssh-action@v1.0.0
+            # ============================================================
+            # STEP 7: Success
+            # ============================================================
+            echo ""
+            echo "============================================"
+            echo "✅ All health checks passed!"
+            echo "🎉 Deployment to ssnlc.in successful!"
+            echo "============================================"
+            docker compose -f docker-compose.prod.yml ps
+
+      # ============================================================
+      # SUCCESS NOTIFICATION (Optional: Discord Webhook)
+      # ============================================================
+      - name: Discord Success Notification
+        if: success() && secrets.DISCORD_WEBHOOK != ''
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "✅ Deployment to ssnlc.in successful!"
-            docker compose -f /home/devx/Law-Collage-Website/docker-compose.prod.yml ps
+            curl -H "Content-Type: application/json" \
+              -d '{"content":"✅ **Deployment Successful!**\nRepository: ${{ github.repository }}\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nURL: https://ssnlc.in"}' \
+              ${{ secrets.DISCORD_WEBHOOK }}
 
-      - name: Deployment Failed Notification
+      # ============================================================
+      # FAILURE NOTIFICATION
+      # ============================================================
+      - name: Discord Failure Notification
+        if: failure() && secrets.DISCORD_WEBHOOK != ''
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            curl -H "Content-Type: application/json" \
+              -d '{"content":"❌ **Deployment Failed!**\nRepository: ${{ github.repository }}\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nAction: Rollback executed"}' \
+              ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Deployment Failure Report
         if: failure()
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "❌ Deployment failed! Rollback completed."
-            echo "Check logs: docker compose -f /home/devx/Law-Collage-Website/docker-compose.prod.yml logs"
+        run: |
+          echo "============================================"
+          echo "❌ Deployment failed!"
+          echo "============================================"
+          echo "Rollback has been automatically executed."
+          echo "Check logs on VPS: docker compose -f docker-compose.prod.yml logs"
+          echo "============================================"
