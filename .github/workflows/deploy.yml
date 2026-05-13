@@ -1,0 +1,141 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_NGINX: ghcr.io/${{ github.repository }}/nginx
+  IMAGE_NAME_CLIENT: ghcr.io/${{ github.repository }}/client
+  IMAGE_NAME_SERVER: ghcr.io/${{ github.repository }}/server
+  DEPLOY_DIR: /home/devx/Law-Collage-Website
+
+jobs:
+  # ========== TEST JOB ==========
+  test:
+    name: Test Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [nginx, client, server]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build ${{ matrix.service }} image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./${{ matrix.service == 'nginx' && 'nginx' || matrix.service }}
+          file: ./${{ matrix.service == 'nginx' && 'nginx' || matrix.service }}/Dockerfile
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ========== DEPLOY JOB ==========
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          DEPLOY_DIR: ${{ env.DEPLOY_DIR }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          envs: DEPLOY_DIR
+          script: |
+            echo "🚀 Starting deployment..."
+            
+            # Navigate to project directory
+            cd $DEPLOY_DIR
+            
+            # Save current image tags for rollback
+            echo "📦 Saving current image tags..."
+            docker compose -f docker-compose.prod.yml images -q > /tmp/previous-images.txt 2>/dev/null || true
+            
+            # Update repository
+            echo "📥 Pulling latest code..."
+            git fetch origin
+            git reset --hard origin/main
+            
+            # Build images
+            echo "🔨 Building Docker images..."
+            docker compose -f docker-compose.prod.yml build --no-cache
+            
+            # Stop old containers gracefully
+            echo "⏸️  Stopping old containers..."
+            docker compose -f docker-compose.prod.yml down --remove-orphans
+            
+            # Start new containers
+            echo "🚀 Starting services..."
+            docker compose -f docker-compose.prod.yml up -d
+            
+            # Wait for services to be ready
+            echo "⏳ Waiting for services to be healthy..."
+            sleep 20
+            
+            # Health check
+            echo "🏥 Performing health checks..."
+            HEALTH_OK=true
+            
+            # Check NGINX
+            if ! docker exec ssnlc-nginx nginx -t 2>/dev/null; then
+              echo "❌ NGINX health check failed"
+              HEALTH_OK=false
+            fi
+            
+            # Check API
+            if ! docker exec ssnlc-server wget -q -O - http://localhost:5000/api/health 2>/dev/null | grep -q "ok"; then
+              echo "❌ API health check failed"
+              HEALTH_OK=false
+            fi
+            
+            # Check Frontend
+            if ! docker exec ssnlc-client wget -q -O - http://localhost:3000 2>/dev/null | grep -q "html"; then
+              echo "❌ Frontend health check failed"
+              HEALTH_OK=false
+            fi
+            
+            if [ "$HEALTH_OK" = false ]; then
+              echo "🔄 Health checks failed, rolling back..."
+              bash $DEPLOY_DIR/scripts/rollback.sh
+              exit 1
+            fi
+            
+            echo "✅ All health checks passed"
+            echo "🎉 Deployment successful!"
+
+      - name: Deployment Success Notification
+        if: success()
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "✅ Deployment to ssnlc.in successful!"
+            docker compose -f /home/devx/Law-Collage-Website/docker-compose.prod.yml ps
+
+      - name: Deployment Failed Notification
+        if: failure()
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "❌ Deployment failed! Rollback completed."
+            echo "Check logs: docker compose -f /home/devx/Law-Collage-Website/docker-compose.prod.yml logs"
