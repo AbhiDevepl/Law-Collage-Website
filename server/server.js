@@ -5,7 +5,7 @@ const connectDB = require('./src/config/db');
 const adminAuthRoutes = require('./routes/adminAuth.routes');
 const announcementRoutes = require('./routes/announcements.routes');
 const publicRouter = require('./src/route/public.route');
-const healthRoutes = require('./src/routes/health');
+const healthRoutes = require('./routes/health');
 
 const app = express();
 
@@ -14,7 +14,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://ssnlc.in'],
   credentials: true,
 }));
 app.use(express.json());
