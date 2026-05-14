@@ -72,10 +72,11 @@ web_modules/
 
 # Output of 'npm pack'
 *.tgz
-
+.env.production
 # Yarn Integrity file
 .yarn-integrity
-
+nginx/ssl/*
+*.pem
 # dotenv environment variable files
 .env
 .env.development.local
@@ -141,4 +142,4 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
-# End of https://www.toptal.com/developers/gitignore/api/node
+# End of https://www.toptal.com/developers/gitignore/api/node*.pem
