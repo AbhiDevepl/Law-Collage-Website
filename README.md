@@ -140,7 +140,114 @@ npm start
 
 <h2>📄 License</h2>
 <p>This project is open-source. See the LICENSE file for details.</p>
+Here's a comprehensive overview of your SSNLC Law College Website:
 
+  ---
+  Project Overview
+
+  A full-stack institutional website for a law college, deployed at ssnlc.in.
+
+  ---
+  Frontend (Next.js 14)
+
+  Tech Stack:
+  - Next.js 14 with App Router
+  - Tailwind CSS + Material Tailwind
+  - Framer Motion for animations
+  - React Icons / Font Awesome
+  - Axios for API calls
+  - PDF.js for document viewing
+  - SweetAlert2 for alerts
+
+  Pages:
+
+  ┌──────────────────┬────────────────────┐
+  │      Route       │      Purpose       │
+  ├──────────────────┼────────────────────┤
+  │ /                │ Home page          │
+  ├──────────────────┼────────────────────┤
+  │ /about           │ About the college  │
+  ├──────────────────┼────────────────────┤
+  │ /academics       │ Academic programs  │
+  ├──────────────────┼────────────────────┤
+  │ /faculty         │ Faculty directory  │
+  ├──────────────────┼────────────────────┤
+  │ /announcements   │ News/announcements │
+  ├──────────────────┼────────────────────┤
+  │ /events          │ Events listing     │
+  ├──────────────────┼────────────────────┤
+  │ /gallery         │ Photo gallery      │
+  ├──────────────────┼────────────────────┤
+  │ /contact         │ Contact page       │
+  ├──────────────────┼────────────────────┤
+  │ /newsbulletin    │ News bulletin      │
+  ├──────────────────┼────────────────────┤
+  │ /important-links │ Quick links        │
+  ├──────────────────┼────────────────────┤
+  │ /developers      │ Developer credits  │
+  ├──────────────────┼────────────────────┤
+  │ /admin/login     │ Admin login        │
+  ├──────────────────┼────────────────────┤
+  │ /admin/dashboard │ Admin panel        │
+  └──────────────────┴────────────────────┘
+
+  Components organized by feature: About, Common, Contact, Departments, Events, Gallery, Highlights, Home, ReachUs, admin
+
+  ---
+  Backend (Express.js)
+
+  Tech Stack:
+  - Express.js
+  - MongoDB + Mongoose
+  - JWT authentication
+  - bcryptjs for password hashing
+  - cookie-parser for session cookies
+
+  API Routes:
+  - /api/health — Health check
+  - /api/admin — Admin authentication
+  - /api/announcements — Manage announcements
+  - /api — Public routes (ImportantLinks, etc.)
+
+  Models:
+  - Admin — Username/password, hashed with bcrypt
+  - ImportantLink — Quick links for the website
+
+  Scripts:
+  - npm run create-admin — Create admin user
+  - npm run generate-key — Generate JWT secret
+
+  ---
+  Infrastructure
+
+  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+  │   NGINX      │────▶│   Client    │     │  MongoDB    │
+  │  (SSL/Proxy) │     │  (Next.js)  │◀────│  (Docker)   │
+  │   :443       │     │  (Docker)   │     └─────────────┘
+  └─────────────┘     └─────────────┘
+                             │
+                             ▼
+                      ┌─────────────┐
+                      │   Server    │
+                      │  (Express)  │
+                      │  (Docker)   │
+                      └─────────────┘
+
+  Docker Compose (prod):
+  - nginx — Reverse proxy with SSL termination
+  - client — Next.js production build
+  - server — Express.js API
+  - mongodb — MongoDB 7 database
+
+  CI/CD: GitHub Actions deploys to production via the workflow in .github/workflows/deploy.yml
+
+  ---
+  Key Architecture Decisions
+
+  - NGINX handles SSL and proxies /api → server, everything else → Next.js
+  - JWT tokens stored in cookies for admin authentication
+  - MongoDB runs in Docker; connection string via MONGODB_URI env var
+  - Cloudinary integration available for image uploads (env vars present)
 <hr>
 
 <h2>🙋 Contact</h2>
