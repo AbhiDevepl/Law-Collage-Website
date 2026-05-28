@@ -37,20 +37,26 @@ Law-Collage-Website/
 
 <h2>🖼️ System Architecture</h2>
 <pre>
-         ┌────────────────┐
-         │   Frontend     │
-         │   (Next.js)    │
-         └──────┬─────────┘
+    Browser → https://ssnlc.in
                 │
-        HTTP Requests / API Calls
-                ▼
-         ┌────────────────┐
-         │   Backend      │
-         │ (Express.js)   │
-         └──────┬─────────┘
+         ┌──────▼──────────┐
+         │   Traefik        │  ← Coolify manages this
+         │   (Reverse Proxy │     Auto SSL, routing
+         │    + SSL)        │
+         └──────┬──────────┘
                 │
-    Database / Third-party APIs
+         ┌──────▼──────────┐     ┌────────────────┐
+         │   Frontend      │────▶│   Backend      │
+         │   (Next.js)     │     │ (Express.js)   │
+         │   :3000         │     │   :5000        │
+         └─────────────────┘     └──────┬─────────┘
+                                        │
+                                 ┌──────▼─────────┐
+                                 │   MongoDB      │
+                                 │   :27017       │
+                                 └────────────────┘
 </pre>
+<p>Next.js proxies <code>/api/*</code> requests to Express internally via Docker network (rewrites in <code>next.config.js</code>).</p>
 
 <hr>
 
@@ -106,27 +112,20 @@ npm start
 
 <hr>
 
-<h2>📦 Deployment Instructions</h2>
+<h2>📦 Deployment (Coolify)</h2>
+<p>This project deploys via <strong>Coolify</strong> — a self-hosted PaaS running on the VPS. Coolify uses Traefik for reverse proxy and automatic SSL.</p>
 <ol>
-  <li>Install Node.js (LTS), reverse proxy (NGINX/Apache), optional: PM2</li>
-  <li>Run the following:</li>
+  <li>Install Coolify on VPS: <code>curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash</code></li>
+  <li>Add GitHub repo in Coolify dashboard</li>
+  <li>Set domain to <code>ssnlc.in</code></li>
+  <li>Add environment variables</li>
+  <li>Deploy — SSL and routing are automatic</li>
 </ol>
+<p>See <a href="VPS-SETUP.md">VPS-SETUP.md</a> for full setup instructions.</p>
+<h3>Manual Fallback</h3>
 <pre>
-git clone https://github.com/AbhiDevepl/Law-Collage-Website.git
-cd client
-npm install
-npm run build
-npm start
+docker compose -f docker-compose.prod.yml up -d --build
 </pre>
-<p>In a separate terminal:</p>
-<pre>
-cd ../server
-npm install
-npm start
-</pre>
-<ol start="3">
-  <li>Connect domain to server and configure SSL</li>
-</ol>
 <hr>
 
 <h2>📌 Notes</h2>

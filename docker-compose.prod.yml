@@ -1,12 +1,41 @@
 services:
   client:
     build: ./client
-    image: law-college-website-client:latest
-    container_name: ssnlc-client
     restart: always
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_API_URL=https://ssnlc.in/api
+    labels:
+      # --- Traefik Routing ---
+      - "traefik.enable=true"
+      - "traefik.http.routers.ssnlc.rule=Host(`ssnlc.in`)"
+      - "traefik.http.routers.ssnlc.entrypoints=https"
+      - "traefik.http.routers.ssnlc.tls=true"
+      - "traefik.http.routers.ssnlc.tls.certresolver=letsencrypt"
+      - "traefik.http.services.ssnlc.loadbalancer.server.port=3000"
+      # --- www redirect ---
+      - "traefik.http.routers.ssnlc-www.rule=Host(`www.ssnlc.in`)"
+      - "traefik.http.routers.ssnlc-www.entrypoints=https"
+      - "traefik.http.routers.ssnlc-www.tls=true"
+      - "traefik.http.routers.ssnlc-www.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ssnlc-www.middlewares=ssnlc-www-redirect"
+      - "traefik.http.middlewares.ssnlc-www-redirect.redirectregex.regex=^https://www\\.ssnlc\\.in/(.*)"
+      - "traefik.http.middlewares.ssnlc-www-redirect.redirectregex.replacement=https://ssnlc.in/$${1}"
+      - "traefik.http.middlewares.ssnlc-www-redirect.redirectregex.permanent=true"
+      # --- Security Headers Middleware (migrated from NGINX) ---
+      - "traefik.http.routers.ssnlc.middlewares=ssnlc-headers,ssnlc-compress"
+      - "traefik.http.middlewares.ssnlc-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.ssnlc-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.ssnlc-headers.headers.stsPreload=true"
+      - "traefik.http.middlewares.ssnlc-headers.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.ssnlc-headers.headers.frameDeny=false"
+      - "traefik.http.middlewares.ssnlc-headers.headers.customFrameOptionsValue=SAMEORIGIN"
+      - "traefik.http.middlewares.ssnlc-headers.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.ssnlc-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
+      - "traefik.http.middlewares.ssnlc-headers.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), interest-cohort=()"
+      - "traefik.http.middlewares.ssnlc-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://ssnlc.in; frame-ancestors 'self'; form-action 'self'; base-uri 'self'"
+      # --- Gzip Compression ---
+      - "traefik.http.middlewares.ssnlc-compress.compress=true"
     depends_on:
       server:
         condition: service_healthy
@@ -17,12 +46,10 @@ services:
       retries: 3
       start_period: 40s
     networks:
-      - ssnlc_network
+      - coolify
 
   server:
     build: ./server
-    image: law-college-website-server:latest
-    container_name: ssnlc-server
     restart: always
     environment:
       - NODE_ENV=production
@@ -43,11 +70,10 @@ services:
       retries: 3
       start_period: 30s
     networks:
-      - ssnlc_network
+      - coolify
 
   mongodb:
     image: mongo:7
-    container_name: ssnlc-mongodb
     restart: always
     volumes:
       - mongodb_data:/data/db
@@ -58,31 +84,11 @@ services:
       retries: 5
       start_period: 30s
     networks:
-      - ssnlc_network
-
-  nginx:
-    build: ./nginx
-    image: law-college-website-nginx:latest
-    container_name: ssnlc-nginx
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/letsencrypt/live/ssnlc.in/fullchain.pem:/etc/nginx/ssl/cert.pem:ro
-      - /etc/letsencrypt/live/ssnlc.in/privkey.pem:/etc/nginx/ssl/key.pem:ro
-    depends_on:
-      client:
-        condition: service_healthy
-      server:
-        condition: service_healthy
-    networks:
-      - ssnlc_network
+      - coolify
 
 networks:
-  ssnlc_network:
-    driver: bridge
+  coolify:
+    external: true
 
 volumes:
   mongodb_data:
-    driver: local

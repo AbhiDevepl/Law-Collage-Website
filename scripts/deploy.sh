@@ -11,7 +11,7 @@ log() {
 }
 
 log "============================================"
-log "Starting deployment to ssnlc.in"
+log "Starting deployment to ssnlc.in (Coolify)"
 log "============================================"
 
 # Step 1: Pre-flight checks
@@ -22,15 +22,14 @@ if ! docker info >/dev/null 2>&1; then
     exit 1
 fi
 
-# Check Let's Encrypt certs (source of truth — not nginx/ssl copy)
-if [ ! -f "/etc/letsencrypt/live/ssnlc.in/fullchain.pem" ] || \
-   [ ! -f "/etc/letsencrypt/live/ssnlc.in/privkey.pem" ]; then
-    log "ERROR: SSL certificates not found at /etc/letsencrypt/live/ssnlc.in/"
+if [ ! -f "$DEPLOY_DIR/.env" ]; then
+    log "ERROR: .env file not found at $DEPLOY_DIR/.env"
     exit 1
 fi
 
-if [ ! -f "$DEPLOY_DIR/.env" ]; then
-    log "ERROR: .env file not found at $DEPLOY_DIR/.env"
+# Verify coolify network exists (created by Coolify)
+if ! docker network inspect coolify >/dev/null 2>&1; then
+    log "ERROR: 'coolify' Docker network not found. Is Coolify installed and running?"
     exit 1
 fi
 
@@ -51,7 +50,6 @@ docker compose -f "$COMPOSE_FILE" down --timeout 30 || true
 log "Step 4: Tagging current images as :previous..."
 docker tag law-college-website-client:latest law-college-website-client:previous 2>/dev/null || true
 docker tag law-college-website-server:latest law-college-website-server:previous 2>/dev/null || true
-docker tag law-college-website-nginx:latest law-college-website-nginx:previous 2>/dev/null || true
 
 # Step 5: Build new images
 log "Step 5: Building new Docker images..."
@@ -68,12 +66,13 @@ docker compose -f "$COMPOSE_FILE" up -d
 log "Waiting 15s for containers to initialize..."
 sleep 15
 
-# Step 8: Health check
-log "Step 7: Running health checks..."
+# Step 8: Health check (via internal port — Traefik handles external routing)
+log "Step 8: Running health checks..."
 HEALTH_OK=false
 for i in 1 2 3 4 5; do
     log "Health check attempt $i/5..."
-    if curl -sf --max-time 10 https://ssnlc.in/api/health >/dev/null 2>&1; then
+    # Check health via Next.js internal proxy to the server
+    if docker compose -f "$COMPOSE_FILE" exec -T client wget -qO- http://localhost:3000/api/health >/dev/null 2>&1; then
         HEALTH_OK=true
         log "Health check passed ✅"
         break

@@ -11,11 +11,17 @@ SSNLC Law College Website - a full-stack institutional website with Next.js fron
 - **Frontend**: Next.js 14 with App Router (`client/src/app/`). Client-side components use "use client" directive.
 - **Backend**: Express.js API server (`server/`) running on port 5000
 - **Database**: MongoDB via Mongoose
-- **Reverse Proxy**: NGINX for HTTPS/SSL termination
-- **Deployment**: Docker Compose with GitHub Actions CI/CD
+- **Reverse Proxy**: Coolify (Traefik) — handles SSL termination, routing, and security headers
+- **Deployment**: Docker Compose via Coolify with GitHub Actions CI/CD
 
 ### API Communication
-Frontend calls backend via `NEXT_PUBLIC_API_URL` environment variable (default `/api` through NGINX proxy). Backend routes are under `/api/` prefix.
+Frontend calls backend via Next.js `rewrites()` in `next.config.js` — proxies `/api/*` to `http://server:5000/api/*` internally via Docker network. The `NEXT_PUBLIC_API_URL` env var is set to `https://ssnlc.in/api` for client-side API calls.
+
+### Coolify / Traefik
+- Traefik labels on the `client` service handle domain routing, TLS, and security headers
+- All services run on the `coolify` external Docker network
+- SSL certificates are auto-managed by Traefik via Let's Encrypt
+- `www.ssnlc.in` redirects to `ssnlc.in` via Traefik middleware
 
 ## Common Commands
 
@@ -32,7 +38,7 @@ npm run dev    # Development with nodemon
 npm start      # Production
 npm run create-admin  # Create admin user
 
-# Docker
+# Docker (via Coolify or manual fallback)
 docker compose -f docker-compose.prod.yml build
 docker compose -f docker-compose.prod.yml up -d
 docker compose -f docker-compose.prod.yml logs -f
@@ -41,7 +47,7 @@ docker compose -f docker-compose.prod.yml logs -f
 ## Environment Variables
 
 ### Server (.env)
-- `MONGO_URI` - MongoDB connection string
+- `MONGODB_URI` - MongoDB connection string
 - `JWT_SECRET` - JWT signing secret
 - `PORT` - Server port (default: 5000)
 - `FRONTEND_URI` - Frontend URL for CORS

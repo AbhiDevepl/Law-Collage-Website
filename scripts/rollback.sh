@@ -20,7 +20,7 @@ docker compose -f "$COMPOSE_FILE" down --timeout 30 || true
 sleep 5
 
 log "Restoring previous Docker images..."
-for service in client server nginx; do
+for service in client server; do
     if docker images --format "{{.Repository}}:{{.Tag}}" | grep -q "law-college-website-${service}:previous"; then
         docker tag "law-college-website-${service}:previous" "law-college-website-${service}:latest"
         log "Restored ${service} image"
@@ -36,7 +36,7 @@ log "Verifying health after rollback..."
 sleep 30
 HEALTH_OK=false
 for i in 1 2 3; do
-    if curl -sf https://ssnlc.in/api/health >/dev/null 2>&1; then
+    if docker compose -f "$COMPOSE_FILE" exec -T client wget -qO- http://localhost:3000/api/health >/dev/null 2>&1; then
         HEALTH_OK=true
         log "Health check passed after rollback"
         break

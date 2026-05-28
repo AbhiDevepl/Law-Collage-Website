@@ -1,9 +1,17 @@
+# Deploy to Production
+#
+# NOTE: If using Coolify's native GitHub integration, this workflow
+# can be simplified or removed. Coolify can detect pushes and deploy
+# automatically via its webhook. This SSH-based deploy is kept as a
+# fallback for manual deployments.
+
 name: Deploy to Production
 
 on:
   push:
     branches:
       - main
+
 
 jobs:
   lint-and-build:
