@@ -324,7 +324,7 @@ NEXT_PUBLIC_API_URL=https://ssnlc.edu.in/api
 FRONTEND_URI=https://ssnlc.edu.in
 
 # Backend
-MONGO_URI=mongodb://mongodb:27017/ssnlc
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 JWT_SECRET=your_very_secure_jwt_secret_here
 
 # SSL/TLS

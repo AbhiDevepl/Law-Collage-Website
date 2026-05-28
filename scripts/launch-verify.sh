@@ -36,7 +36,7 @@ docker compose -f docker-compose.prod.yml logs --tail=50
 docker compose -f docker-compose.prod.yml logs nginx --tail=100
 docker compose -f docker-compose.prod.yml logs client --tail=100
 docker compose -f docker-compose.prod.yml logs server --tail=100
-docker compose -f docker-compose.prod.yml logs mongodb --tail=100
+# Note: MongoDB is external (Atlas/live URI). No mongodb container.
 
 # ============================================================
 # A5.4: TEST HTTPS

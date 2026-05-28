@@ -99,26 +99,30 @@ cd Law-Collage-Website
 
 ---
 
-## Step 6: Create .env File
+## Step 6: Set Environment Variables in Coolify
 
-```bash
-# Create production .env file
-cat > .env << 'EOF'
-NODE_ENV=production
-NEXT_PUBLIC_API_URL=https://ssnlc.in/api
-FRONTEND_URI=https://ssnlc.in
-PORT=5000
+**Do NOT create a local `.env` file.** Instead, add these environment variables in the Coolify dashboard:
+
+| Variable | Description |
+|----------|-------------|
+| `MONGODB_URI` | MongoDB connection string (Atlas or any external MongoDB) |
+| `JWT_SECRET` | Secret key for JWT token signing |
+| `CLOUDINARY_CLOUD_NAME` | (Optional) Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | (Optional) Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | (Optional) Cloudinary API secret |
+
+Example values:
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 JWT_SECRET=your_secure_random_string_here_change_this
-MONGODB_URI=mongodb://mongodb:27017/ssnlc
-EOF
-
-chmod 600 .env
 ```
 
 **Generate a secure JWT_SECRET:**
 ```bash
 openssl rand -base64 32
 ```
+
+> **Important:** MongoDB is now external. The `MONGODB_URI` must point to a live MongoDB instance (e.g., MongoDB Atlas). No MongoDB Docker container will be created.
 
 ---
 
@@ -147,13 +151,21 @@ sudo ufw status verbose
 2. Add a new Resource → Application → Docker Compose
 3. Connect your GitHub repository
 4. Set the domain to `ssnlc.in`
-5. Add environment variables from `.env`
+5. Add environment variables (especially `MONGODB_URI` and `JWT_SECRET`)
 6. Deploy
 
 ### Option B: Manual Docker Compose (Fallback)
 ```bash
 # As devx, in project directory
 cd /home/devx/Law-Collage-Website
+
+# Create .env file with required variables
+cat > .env << 'EOF'
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
+JWT_SECRET=your_secure_random_string_here_change_this
+EOF
+
+chmod 600 .env
 
 # Build and start all services
 docker compose -f docker-compose.prod.yml up -d --build
@@ -186,7 +198,7 @@ curl -I https://ssnlc.in
 # View logs
 docker compose -f docker-compose.prod.yml logs --tail=100
 
-# Check running containers
+# Check running containers (should show client and server only)
 docker ps
 ```
 

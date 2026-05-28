@@ -58,8 +58,8 @@ FRONTEND_URI=https://ssnlc.in
 PORT=5000
 JWT_SECRET=your_super_secure_jwt_secret_key_here_change_in_production
 
-# Database (using Docker Compose MongoDB)
-MONGO_URI=mongodb://ssnlc-mongodb:27017/ssnlc
+# Database (external MongoDB — Atlas or any live URI)
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 
 # Cloudinary (if using)
 CLOUDINARY_CLOUD_NAME=your_cloud_name

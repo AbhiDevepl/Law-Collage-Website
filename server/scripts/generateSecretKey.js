@@ -14,7 +14,7 @@ try {
 } catch (error) {
     // If .env doesn't exist, create it with default values
     envContent = `PORT=3000
-MONGODB_URI=mongodb://localhost:27017/law-college
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 FRONTEND_URI=http://localhost:3000
 NODE_ENV=development
 `;

@@ -53,7 +53,8 @@ Law-Collage-Website/
                                         │
                                  ┌──────▼─────────┐
                                  │   MongoDB      │
-                                 │   :27017       │
+                                 │   (External)   │
+                                 │   Atlas / Live │
                                  └────────────────┘
 </pre>
 <p>Next.js proxies <code>/api/*</code> requests to Express internally via Docker network (rewrites in <code>next.config.js</code>).</p>
@@ -233,10 +234,9 @@ Here's a comprehensive overview of your SSNLC Law College Website:
                       └─────────────┘
 
   Docker Compose (prod):
-  - nginx — Reverse proxy with SSL termination
   - client — Next.js production build
   - server — Express.js API
-  - mongodb — MongoDB 7 database
+  - MongoDB is external (Atlas / live URI via MONGODB_URI env var)
 
   CI/CD: GitHub Actions deploys to production via the workflow in .github/workflows/deploy.yml
 
@@ -245,7 +245,7 @@ Here's a comprehensive overview of your SSNLC Law College Website:
 
   - NGINX handles SSL and proxies /api → server, everything else → Next.js
   - JWT tokens stored in cookies for admin authentication
-  - MongoDB runs in Docker; connection string via MONGODB_URI env var
+  - MongoDB is external (Atlas/live); connection string via MONGODB_URI env var
   - Cloudinary integration available for image uploads (env vars present)
 <hr>
 

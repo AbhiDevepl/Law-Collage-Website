@@ -74,7 +74,7 @@ open https://yourdomain.com
 | Frontend | Next.js on `client:3000` |
 | Backend | Express on `server:5000` |
 | Proxy | NGINX with SSL termination |
-| Database | MongoDB on `mongodb:27017` |
+| Database | MongoDB external (Atlas/live URI via `MONGODB_URI`) |
 | Network | Docker bridge network |
 
 ---
@@ -369,7 +369,7 @@ FRONTEND_URI=http://localhost
 
 # Backend config
 PORT=5000
-MONGO_URI=mongodb://mongodb:27017/ssnlc
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 JWT_SECRET=your_secure_jwt_secret_here
 
 # Certificate email (required for Let's Encrypt)

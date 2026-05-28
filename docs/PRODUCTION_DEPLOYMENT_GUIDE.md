@@ -207,7 +207,7 @@ app.use('/', healthRoutes);
 
 // Make sure MongoDB connection status is tracked
 global.mongoConnected = false;
-mongoose.connect(process.env.MONGO_URI, () => {
+mongoose.connect(process.env.MONGODB_URI, () => {
     global.mongoConnected = true;
     console.log('✅ MongoDB connected');
 });
@@ -228,8 +228,7 @@ curl https://ssnlc.in/api/health
 ssh -i ~/.ssh/ssnlc_vps devx@<VPS_IP>
 docker exec ssnlc-nginx nginx -t
 
-# Check MongoDB
-docker exec ssnlc-mongodb mongosh --eval "db.adminCommand('ping')"
+# MongoDB is external (Atlas/live URI). Connection is verified via /api/health/detailed
 
 # View real-time logs
 docker compose -f docker-compose.prod.yml logs -f
@@ -370,8 +369,7 @@ df -h /
 # Memory usage
 free -h
 
-# MongoDB check
-docker exec ssnlc-mongodb mongosh --eval "db.adminCommand('ping')"
+# MongoDB is external (Atlas/live URI). Check via /api/health/detailed endpoint.
 
 # Certificate expiration
 sudo certbot certificates

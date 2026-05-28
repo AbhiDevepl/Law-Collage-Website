@@ -55,14 +55,11 @@ services:
       - NODE_ENV=production
       - PORT=5000
       - FRONTEND_URI=https://ssnlc.in
-      - MONGO_URI=${MONGODB_URI}
+      - MONGODB_URI=${MONGODB_URI}
       - JWT_SECRET=${JWT_SECRET}
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME:-}
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY:-}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET:-}
-    depends_on:
-      mongodb:
-        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:5000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))\""]
       interval: 30s
@@ -72,23 +69,6 @@ services:
     networks:
       - coolify
 
-  mongodb:
-    image: mongo:7
-    restart: always
-    volumes:
-      - mongodb_data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    networks:
-      - coolify
-
 networks:
   coolify:
     external: true
-
-volumes:
-  mongodb_data:

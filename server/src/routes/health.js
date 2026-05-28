@@ -33,7 +33,7 @@ router.get('/health', (req, res) => {
     version: version,
     services: {
       server: 'running',
-      mongodb: process.env.MONGO_URI ? 'configured' : 'not configured'
+      mongodb: process.env.MONGODB_URI ? 'configured' : 'not configured'
     }
   });
 });

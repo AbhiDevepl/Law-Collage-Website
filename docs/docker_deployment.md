@@ -65,6 +65,22 @@ docker-compose down
 
 ---
 
+---
+
+## ☁️ MongoDB is External
+
+MongoDB **no longer runs inside Docker**. The production deployment connects to an external MongoDB instance (e.g., MongoDB Atlas) via the `MONGODB_URI` environment variable.
+
+Set `MONGODB_URI` in your Coolify environment variables or in `.env`:
+
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
+```
+
+No MongoDB container or volume is created.
+
+---
+
 ## 📈 Notes on Scaling & Production Deployment
 
 ### 1. Frontend Scalability (Next.js)
@@ -86,9 +102,10 @@ docker-compose down
 * **Caching & Rate Limiting:** The `nginx.conf` includes basic setup for static file caching (for Next.js assets) and a rate-limiting zone to prevent DDoS attacks against the API.
 * **HTTPS/SSL:** In a real production deployment, Nginx should be configured with SSL certificates (e.g., via Let's Encrypt/Certbot). We recommend putting a service like Traefik or a Cloudflare tunnel in front of this stack for automatic SSL.
 
-### 4. Database Persistence (MongoDB)
-* Data is stored in a Docker-managed volume (`mongodb_data`). 
-* If the `mongodb` container is destroyed, the data remains safe. Ensure you back up `/var/lib/docker/volumes/` periodically.
+### 4. Database (MongoDB External)
+* MongoDB is **external** (Atlas / live URI). No Docker container or volume is created.
+* Connection is configured via the `MONGODB_URI` environment variable.
+* Data persistence and backups are managed by your MongoDB provider (e.g., Atlas).
 
 ### 5. CI/CD Integration
 For future automation, you can create a `.github/workflows/deploy.yml` that:

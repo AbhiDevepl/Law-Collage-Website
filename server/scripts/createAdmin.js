@@ -8,7 +8,12 @@ dotenv.config();
 const createAdmin = async () => {
     try {
         // Connect to MongoDB
-        await mongoose.connect(process.env.MONGODB_URI);
+        const uri = process.env.MONGODB_URI || process.env.MONGO_URI;
+        if (!uri) {
+            console.error('FATAL: MONGODB_URI is not defined');
+            process.exit(1);
+        }
+        await mongoose.connect(uri);
         console.log('Connected to MongoDB');
 
         // Check if admin already exists
