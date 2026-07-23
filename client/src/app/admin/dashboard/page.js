@@ -55,7 +55,10 @@ export default function AdminDashboard() {
     try {
       const response = await fetch(`${API_BASE_URL}/announcements`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        },
         body: JSON.stringify({ text: announcementText })
       });
       const data = await response.json();
@@ -76,7 +79,10 @@ export default function AdminDashboard() {
     try {
       const response = await fetch(`${API_BASE_URL}/announcements/${editingId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        },
         body: JSON.stringify({ text: announcementText })
       });
       const data = await response.json();
@@ -96,7 +102,12 @@ export default function AdminDashboard() {
     setError('');
     setSuccess('');
     try {
-      const response = await fetch(`${API_BASE_URL}/announcements/${id}`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/announcements/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        }
+      });
       if (!response.ok) throw new Error('Failed to delete announcement');
       setAnnouncements(announcements.filter(a => a._id !== id));
       setSuccess('Announcement deleted successfully');
