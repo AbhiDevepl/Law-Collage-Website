@@ -1,0 +1,4 @@
+## 2026-07-23 - Unprotected Admin Endpoints and Mock Authentication
+**Vulnerability:** Core administrative endpoints (`POST`, `PUT`, `DELETE` /api/announcements) were completely exposed to public networks without token verification, and the corresponding admin router in `server/routes/adminAuth.routes.js` lacked active `/login` authentication logic, causing the client admin dashboard to use unauthenticated requests.
+**Learning:** This occurred due to a discrepancy between the inactive router file (`server/src/routes/adminAuth.js`) and the active, mounted router file (`server/routes/adminAuth.routes.js`), leaving administrative API endpoints unprotected.
+**Prevention:** Always verify that routing entrypoints mount properly authenticated routers and that all mutations/administrative operations implement robust `verifyToken` middleware, validated with automated security verification scripts.
