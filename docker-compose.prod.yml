@@ -35,7 +35,7 @@ services:
       - "traefik.http.middlewares.ssnlc-headers.headers.contentTypeNosniff=true"
       - "traefik.http.middlewares.ssnlc-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
       - "traefik.http.middlewares.ssnlc-headers.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), interest-cohort=()"
-      - "traefik.http.middlewares.ssnlc-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://ssnlc.in; frame-ancestors 'self'; form-action 'self'; base-uri 'self'"
+      - "traefik.http.middlewares.ssnlc-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://ssnlc.in https://www.google-analytics.com https://www.googletagmanager.com; frame-ancestors 'self'; form-action 'self'; base-uri 'self'"
       # --- Gzip Compression ---
       - "traefik.http.middlewares.ssnlc-compress.compress=true"
     depends_on:

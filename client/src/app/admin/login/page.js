@@ -21,20 +21,6 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
-      // For development/testing, allow hardcoded credentials
-      if (formData.username === 'admin' && formData.password === 'Admin@123') {
-        // Use a valid JWT token that will work with the JWT_SECRET
-        const validToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE1NjAwMDAwLCJleHAiOjE3NDcxMzYwMDB9.bNjOPnxRlwdJlcfzQQQQXdxkILAJUAUKRBFKIYRYXXX';
-        
-        // Store token in both localStorage and cookies
-        localStorage.setItem('adminToken', validToken);
-        // Set cookie with secure attributes - expires in 7 days
-        Cookies.set('adminToken', validToken, { expires: 7, secure: true, sameSite: 'strict' });
-        
-        router.push('/admin/dashboard');
-        return;
-      }
-
       // Call the server's authentication endpoint
       const response = await fetch(`${API_BASE_URL}/admin/login`, {
         method: 'POST',
