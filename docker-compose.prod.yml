@@ -11,13 +11,13 @@ services:
       # --- Traefik Routing ---
       - "traefik.enable=true"
       - "traefik.http.routers.ssnlc.rule=Host(`ssnlc.in`)"
-      - "traefik.http.routers.ssnlc.entrypoints=https"
+      - "traefik.http.routers.ssnlc.entrypoints=websecure"
       - "traefik.http.routers.ssnlc.tls=true"
       - "traefik.http.routers.ssnlc.tls.certresolver=letsencrypt"
       - "traefik.http.services.ssnlc.loadbalancer.server.port=3000"
       # --- www redirect ---
       - "traefik.http.routers.ssnlc-www.rule=Host(`www.ssnlc.in`)"
-      - "traefik.http.routers.ssnlc-www.entrypoints=https"
+      - "traefik.http.routers.ssnlc-www.entrypoints=websecure"
       - "traefik.http.routers.ssnlc-www.tls=true"
       - "traefik.http.routers.ssnlc-www.tls.certresolver=letsencrypt"
       - "traefik.http.routers.ssnlc-www.middlewares=ssnlc-www-redirect"
