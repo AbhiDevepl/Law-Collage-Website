@@ -1,5 +1,10 @@
 const jwt = require('jsonwebtoken');
 
+// Warn loudly on startup if auth bypass is active
+if (process.env.NODE_ENV === 'development') {
+  console.warn('⚠️  WARNING: JWT auth bypass is ACTIVE (NODE_ENV=development). Do NOT use this in production!');
+}
+
 // Verify token middleware
 exports.verifyToken = (req, res, next) => {
   // In development mode, bypass token verification
@@ -29,7 +34,7 @@ exports.verifyToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    console.error('Token verification error:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Token verification error:', error.message);
     return res.status(401).json({
       success: false,
       message: 'Invalid token. Authorization denied.'

@@ -1,5 +1,4 @@
 const {Notice} = require("../model/notice.model.js")
-const { uploadOnCloudinary } = require("../utils/cloudinary.js");
 
 const createNotice = async (req, res) => {
     try {
@@ -22,7 +21,7 @@ const createNotice = async (req, res) => {
             .status(200)
             .json({ success: true, message: "notice uploaded" });
     } catch (error) {
-        console.log(error)
+        if (process.env.NODE_ENV !== 'production') console.error(error);
         return res
             .status(500)
             .json({ success: false, message: "something went wrong" });
@@ -31,9 +30,9 @@ const createNotice = async (req, res) => {
 
 const getNotices = async (req,res) => {
     try {
-        const events = await Notice.find({});
+        const notices = await Notice.find({});
 
-        return res.status(200).json({success:true,message:'notices fetched',events})
+        return res.status(200).json({success:true,message:'notices fetched',notices})
     } catch (error) {
         return res
             .status(500)
@@ -59,15 +58,15 @@ const editNotice = async (req, res) => {
         const { title, details } = req.body;
         const { id } = req.params;
 
-        const isEventExist = await Notice.findById(id);
+        const isNoticeExist = await Notice.findById(id);
 
-        if (!isEventExist) {
+        if (!isNoticeExist) {
             return res
                 .status(404)
                 .json({ success: false, message: "notice doesn't exist" });
         }
 
-        await Event.updateOne(
+        await Notice.updateOne(
             { _id: id },
             {
                 title,
@@ -89,12 +88,12 @@ const deleteNotice = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const isEventExist = await Notice.findById(id);
+        const isNoticeExist = await Notice.findById(id);
 
-        if (!isEventExist) {
+        if (!isNoticeExist) {
             return res
                 .status(404)
-                .json({ success: false, message: "event doesn't exist" });
+                .json({ success: false, message: "notice doesn't exist" });
         }
 
         await Notice.deleteOne({ _id: id });

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Announcement = require('../src/model/announcement.model');
+const { verifyToken } = require('../src/middleware/auth');
 
-// Get all announcements
+// Get all announcements (public)
 router.get('/', async (req, res) => {
   try {
     const announcements = await Announcement.find().sort({ createdAt: -1 });
@@ -12,8 +13,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new announcement
-router.post('/', async (req, res) => {
+// Create a new announcement (admin only)
+router.post('/', verifyToken, async (req, res) => {
   try {
     const { text } = req.body;
     const announcement = new Announcement({ text });
@@ -24,8 +25,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update an announcement
-router.put('/:id', async (req, res) => {
+// Update an announcement (admin only)
+router.put('/:id', verifyToken, async (req, res) => {
   try {
     const { text } = req.body;
     const updated = await Announcement.findByIdAndUpdate(
@@ -40,8 +41,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete an announcement
-router.delete('/:id', async (req, res) => {
+// Delete an announcement (admin only)
+router.delete('/:id', verifyToken, async (req, res) => {
   try {
     const deleted = await Announcement.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ success: false, message: 'Announcement not found' });

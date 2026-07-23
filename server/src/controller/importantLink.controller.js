@@ -13,7 +13,7 @@ exports.getAllLinks = async (req, res) => {
       links
     });
   } catch (error) {
-    console.error('Error fetching important links:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error fetching important links:', error.message);
     res.status(500).json({
       success: false,
       message: 'Server Error: Could not retrieve important links'
@@ -33,7 +33,7 @@ exports.getAllLinksAdmin = async (req, res) => {
       links
     });
   } catch (error) {
-    console.error('Error fetching important links for admin:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error fetching important links for admin:', error.message);
     res.status(500).json({
       success: false,
       message: 'Server Error: Could not retrieve important links'
@@ -58,7 +58,7 @@ exports.getLinkById = async (req, res) => {
       link
     });
   } catch (error) {
-    console.error('Error fetching important link by ID:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error fetching important link by ID:', error.message);
     res.status(500).json({
       success: false,
       message: 'Server Error: Could not retrieve the important link'
@@ -85,7 +85,7 @@ exports.createLink = async (req, res) => {
       link
     });
   } catch (error) {
-    console.error('Error creating important link:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error creating important link:', error.message);
     
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map(val => val.message);
@@ -138,7 +138,7 @@ exports.updateLink = async (req, res) => {
       link
     });
   } catch (error) {
-    console.error('Error updating important link:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error updating important link:', error.message);
     
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map(val => val.message);
@@ -174,7 +174,7 @@ exports.deleteLink = async (req, res) => {
       message: 'Important link deleted successfully'
     });
   } catch (error) {
-    console.error('Error deleting important link:', error);
+    if (process.env.NODE_ENV !== 'production') console.error('Error deleting important link:', error.message);
     res.status(500).json({
       success: false,
       message: 'Server Error: Could not delete important link'

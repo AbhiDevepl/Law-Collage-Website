@@ -32,7 +32,10 @@ export default function AdminDashboard() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/announcements`);
+      const token = localStorage.getItem('adminToken');
+      const headers = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      const response = await fetch(`${API_BASE_URL}/announcements`, { headers });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to fetch announcements');
       setAnnouncements(data.announcements);
@@ -53,9 +56,13 @@ export default function AdminDashboard() {
     setError('');
     setSuccess('');
     try {
+      const token = localStorage.getItem('adminToken');
       const response = await fetch(`${API_BASE_URL}/announcements`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({ text: announcementText })
       });
       const data = await response.json();
@@ -74,9 +81,13 @@ export default function AdminDashboard() {
     setError('');
     setSuccess('');
     try {
+      const token = localStorage.getItem('adminToken');
       const response = await fetch(`${API_BASE_URL}/announcements/${editingId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({ text: announcementText })
       });
       const data = await response.json();
@@ -96,7 +107,13 @@ export default function AdminDashboard() {
     setError('');
     setSuccess('');
     try {
-      const response = await fetch(`${API_BASE_URL}/announcements/${id}`, { method: 'DELETE' });
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`${API_BASE_URL}/announcements/${id}`, { 
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!response.ok) throw new Error('Failed to delete announcement');
       setAnnouncements(announcements.filter(a => a._id !== id));
       setSuccess('Announcement deleted successfully');
@@ -125,9 +142,9 @@ export default function AdminDashboard() {
     )
     .sort((a, b) => {
       if (sortOrder === 'newest') {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.createdAt) - new Date(a.createdAt);
       } else {
-        return new Date(a.date) - new Date(b.date);
+        return new Date(a.createdAt) - new Date(b.createdAt);
       }
     });
 
