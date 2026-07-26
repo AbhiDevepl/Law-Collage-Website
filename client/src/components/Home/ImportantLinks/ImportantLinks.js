@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './ImportantLinks.module.css';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export default function ImportantLinks() {
   const [links, setLinks] = useState([]);
