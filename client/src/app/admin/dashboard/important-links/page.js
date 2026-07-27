@@ -14,7 +14,6 @@ export default function ImportantLinksAdmin() {
   const [formData, setFormData] = useState({
     title: '',
     url: '',
-    isExternal: false,
     order: 0,
     active: true
   });
@@ -72,6 +71,8 @@ export default function ImportantLinksAdmin() {
       [name]: type === 'checkbox' ? checked : value
     });
   };
+
+  const isExternalUrl = (url) => /^https?:\/\//i.test(url.trim());
 
   const handleCreateLink = async (e) => {
     e.preventDefault();
@@ -145,7 +146,6 @@ export default function ImportantLinksAdmin() {
     setFormData({
       title: '',
       url: '',
-      isExternal: false,
       order: 0,
       active: true
     });
@@ -158,7 +158,6 @@ export default function ImportantLinksAdmin() {
     setFormData({
       title: link.title,
       url: link.url,
-      isExternal: link.isExternal,
       order: link.order,
       active: link.active
     });
@@ -310,17 +309,12 @@ export default function ImportantLinksAdmin() {
                     />
                   </div>
                   <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="isExternal"
-                      name="isExternal"
-                      checked={formData.isExternal}
-                      onChange={handleInputChange}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="isExternal" className="ml-2 block text-sm text-gray-900">
-                      External Link
-                    </label>
+                    <span className="text-sm text-gray-500">
+                      Type: {formData.url && isExternalUrl(formData.url)
+                        ? <span className="ml-1 px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full">External (auto)</span>
+                        : <span className="ml-1 px-2 py-0.5 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">Internal</span>
+                      }
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <input

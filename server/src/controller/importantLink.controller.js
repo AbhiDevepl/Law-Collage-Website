@@ -1,5 +1,12 @@
 const ImportantLink = require('../models/ImportantLink');
 
+function normalizeLink(rawUrl) {
+  const trimmed = rawUrl.trim();
+  if (trimmed.startsWith('/')) return { url: trimmed, isExternal: false };
+  if (/^https?:\/\//i.test(trimmed)) return { url: trimmed, isExternal: true };
+  return { url: `https://${trimmed}`, isExternal: true };
+}
+
 // Get all important links
 exports.getAllLinks = async (req, res) => {
   try {
@@ -70,11 +77,12 @@ exports.getLinkById = async (req, res) => {
 exports.createLink = async (req, res) => {
   try {
     const { title, url, isExternal, order, active } = req.body;
+    const normalized = normalizeLink(url);
     
     const link = await ImportantLink.create({
       title,
-      url,
-      isExternal,
+      url: normalized.url,
+      isExternal: normalized.isExternal,
       order,
       active
     });
@@ -106,6 +114,7 @@ exports.createLink = async (req, res) => {
 exports.updateLink = async (req, res) => {
   try {
     const { title, url, isExternal, order, active } = req.body;
+    const normalized = normalizeLink(url);
     
     let link = await ImportantLink.findById(req.params.id);
     
@@ -120,8 +129,8 @@ exports.updateLink = async (req, res) => {
       req.params.id,
       {
         title,
-        url,
-        isExternal,
+        url: normalized.url,
+        isExternal: normalized.isExternal,
         order,
         active,
         updatedAt: Date.now()
