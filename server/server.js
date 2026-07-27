@@ -15,7 +15,6 @@ connectDB();
 // Middleware
 app.use(cors({
   origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://ssnlc.in'],
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://ssnlc.in', 'http://ssnlc-ssnlc-a3n8j3-6a852f-145-223-20-227.sslip.io'],
   credentials: true,
 }));
 app.use(express.json());

@@ -10,7 +10,7 @@ export default function EventsSection() {
       title: "Student Induction Program",
       date: "August 1, 2023",
       description: "Welcome ceremony for the new batch of law students, featuring orientation and insights from the Bar Association.",
-      image: "/images/01. Students Induction/1.jpg",
+      image: "/images/student-induction/1.jpg",
       category: "Academic"
     },
     {
@@ -18,7 +18,7 @@ export default function EventsSection() {
       title: "Constitution Day Celebration",
       date: "November 26, 2023",
       description: "Special lecture series and activities commemorating the adoption of India's Constitution.",
-      image: "/images/02. Constitutional Day/1.jpg",
+      image: "/images/constitution-day/1.jpg",
       category: "Cultural"
     },
     {
@@ -26,7 +26,7 @@ export default function EventsSection() {
       title: "Savitribai Phule Jayanti",
       date: "January 3, 2024",
       description: "Celebration honoring the life and contributions of Savitribai Phule to education and social reform.",
-      image: "/images/03. Savitribai Phule Jayanti/1.jpg",
+      image: "/images/savitribai-phule-jayanti/1.jpg",
       category: "Cultural"
     },
     {
@@ -42,7 +42,7 @@ export default function EventsSection() {
       title: "Shri Shivajirao Nagawade Jayanti",
       date: "January 26, 2024",
       description: "Celebration of our college founder's birth anniversary with cultural programs.",
-      image: "/images/05. Shri Shivajirao Nagawade Jayanti/1.jpg",
+      image: "/images/Shri-Shivajirao-Nagawade-Jayanti/1.jpg",
       category: "Cultural"
     },
     {
@@ -50,7 +50,7 @@ export default function EventsSection() {
       title: "Republic Day Celebration",
       date: "January 26, 2024",
       description: "Flag hoisting and cultural program celebrating India's Republic Day.",
-      image: "/images/06. Republic Day/1.jpg",
+      image: "/images/Republic-Day/1.jpg",
       category: "Cultural"
     },
     {
@@ -58,7 +58,7 @@ export default function EventsSection() {
       title: "Educational Trip to Alibaug",
       date: "February 6, 2024",
       description: "Educational excursion combining learning with recreation for law students.",
-      image: "/images/07. Picnic To Alibaug/1.jpg",
+      image: "/images/Picnic-To-Alibaug/1.jpg",
       category: "Academic"
     },
     {
@@ -66,7 +66,7 @@ export default function EventsSection() {
       title: "Shiv Jayanti Celebration",
       date: "February 19, 2024",
       description: "Grand celebration of Chhatrapati Shivaji Maharaj Jayanti.",
-      image: "/images/08. Shiv Jayanti/1.jpg",
+      image: "/images/Shiv-Jayanti-Celebration/1.jpg",
       category: "Cultural"
     }
   ];

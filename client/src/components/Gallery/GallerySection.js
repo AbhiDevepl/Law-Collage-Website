@@ -7,27 +7,27 @@ export default function GallerySection() {
 
   const galleryImages = [
     {
-      src: "/images/collegepic(1).jpg",
+      src: "/images/carousel/collegepic(1).jpg",
       alt: "College Campus",
       category: "Campus"
     },
     {
-      src: "/images/collegepic(2).jpg",
+      src: "/images/carousel/collegepic(2).png",
       alt: "Library",
       category: "Facilities"
     },
     {
-      src: "/images/collegepic(9).png",
+      src: "/images/carousel/collegepic(9).png",
       alt: "Moot Court",
       category: "Facilities"
     },
     {
-      src: "/images/collegepic(13).jpg",
+      src: "/images/photo3.jpg",
       alt: "Student Activities",
       category: "Events"
     },
     {
-      src: "/images/collegepic(8).jpg",
+      src: "/images/photo4.jpg",
       alt: "Classroom",
       category: "Facilities"
     }
