@@ -11,7 +11,6 @@ export default function PageLoading() {
         width={56}
         height={70}
         className="animate-bounce mb-4 drop-shadow rounded-full border-2 border-blue-200"
-        priority
       />
       <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-2"></div>
       <span className="text-blue-900 font-semibold text-base animate-pulse">Loading...</span>
