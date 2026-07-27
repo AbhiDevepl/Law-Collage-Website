@@ -21,6 +21,7 @@ export default function AboutCard() {
                                 <video 
                                     className="absolute inset-0 w-full h-full object-cover" 
                                     src='/Video/SSNLCCampus.mp4' 
+                                    poster='/images/carousel/collegepic(1).jpg'
                                     autoPlay 
                                     muted 
                                     loop 
