@@ -63,8 +63,8 @@ export default function EventPageTemplate({
       {/* Gallery Section */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {images.map((image, index) => (
-            <div key={index} className="relative h-[400px] group overflow-hidden rounded-lg">
+          {images.map((image) => (
+            <div key={image.src} className="relative h-[400px] group overflow-hidden rounded-lg">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -84,8 +84,8 @@ export default function EventPageTemplate({
             <div className="bg-blue-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-blue-900 mb-2">Event Highlights</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                {highlights.map((highlight, index) => (
-                  <li key={index}>{highlight}</li>
+                {highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
             </div>

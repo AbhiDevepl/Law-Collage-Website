@@ -54,7 +54,7 @@ export default function CertificateCoursePage() {
         >
           {certificateCourses.map((course, index) => (
             <motion.div
-              key={index}
+              key={course.title}
               className="bg-white overflow-hidden shadow-lg rounded-lg border border-gray-200"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

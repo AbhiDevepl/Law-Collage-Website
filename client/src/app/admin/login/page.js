@@ -30,11 +30,11 @@ export default function AdminLogin() {
         body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || 'Authentication failed');
+        throw new Error(`Authentication failed: ${response.status}`);
       }
+
+      const data = await response.json();
 
       // Store the token in both localStorage and cookies
       localStorage.setItem('adminToken', data.token);

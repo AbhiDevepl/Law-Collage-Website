@@ -85,8 +85,8 @@ function Dropdown({ data, setNavOpen }) {
                 aria-labelledby="dropdownNavbarButton"
             >
                 <ul className="py-2 text-sm text-gray-700">
-                    {data.links.map((el, index) => (
-                        <li key={index}>
+                    {data.links.map((el) => (
+                        <li key={el.path || el.title}>
                             <button 
                                 onClick={handleLinkClick(el.path, el.onClick)}
                                 className="block w-full text-left px-6 py-3 md:px-4 md:py-2 hover:bg-gray-100 text-blue-900 hover:text-blue-700 min-h-[44px] md:min-h-0 transition-colors duration-200"

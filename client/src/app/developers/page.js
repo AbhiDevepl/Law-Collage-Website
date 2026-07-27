@@ -148,9 +148,9 @@ export default function Developers() {
         </motion.div>
 
         <motion.div variants={container} initial="hidden" animate="show" className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {developers.map((dev, index) => (
+          {developers.map((dev) => (
             <motion.div
-              key={index}
+              key={dev.email}
               variants={item}
               whileHover={{ scale: 1.02 }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
@@ -171,7 +171,7 @@ export default function Developers() {
                         className="rounded-full border-4 border-white shadow-lg object-cover"
                         onError={() => handleImageError(dev.name)}
                         priority={true}
-                        key={imageKeys[dev.name] || index}
+                        key={imageKeys[dev.name] || dev.photo}
                       />
                     </div>
                   )}
@@ -188,9 +188,9 @@ export default function Developers() {
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-800 mb-2">Skills:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {dev.skills.map((skill, i) => (
+                    {dev.skills.map((skill) => (
                       <span
-                        key={i}
+                        key={skill}
                         className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full"
                       >
                         {skill}

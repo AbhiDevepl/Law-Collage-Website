@@ -294,8 +294,8 @@ export default function LibraryPage() {
             { number: "50+", label: "Legal Journals" },
             { number: "24/7", label: "Digital Access" },
             { number: "100+", label: "Research Papers" }
-          ].map((stat, index) => (
-            <div key={index} className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center text-white shadow-lg transform transition-all duration-300 hover:scale-102 active:scale-98">
+          ].map((stat) => (
+            <div key={stat.label} className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center text-white shadow-lg transform transition-all duration-300 hover:scale-102 active:scale-98">
               <p className="text-2xl sm:text-3xl md:text-4xl font-bold">{stat.number}</p>
               <p className="text-indigo-100 text-sm sm:text-base">{stat.label}</p>
             </div>

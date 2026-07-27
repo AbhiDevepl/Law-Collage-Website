@@ -83,7 +83,7 @@ export function CarouselCompo() {
 				}
 			>
 				{CarouselImages.map((image, index) => (
-					<div key={index} className="relative h-full w-full">
+					<div key={image.ImageLink} className="relative h-full w-full">
 						<Image
 							src={image.ImageLink}
 							alt={image.alt}

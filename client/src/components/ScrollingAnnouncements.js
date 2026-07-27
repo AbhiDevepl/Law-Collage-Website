@@ -8,6 +8,12 @@ export default function ScrollingAnnouncements() {
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/announcements`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch announcements: ${res.status}`);
+        }
+        return res;
+      })
       .then(res => res.json())
       .then(data => {
         if (data.success) setAnnouncements(data.announcements);

@@ -22,8 +22,8 @@ export default function NoticeLine() {
             {NoticeLineData &&
                 <div className="w-full py-1">
                     <marquee>
-                        {NoticeLineData.map((notice, index) => (
-                            <a key={index} href={notice.Link ?? "#"} className="whitespace-nowrap text-xl font-bold font-serif text-gray-800 hover:text-gray-900 focus:text-gray-900 no-underline px-4 py-2">
+                        {NoticeLineData.map((notice) => (
+                            <a key={notice._id || notice.Link || notice.Title} href={notice.Link ?? "#"} className="whitespace-nowrap text-xl font-bold font-serif text-gray-800 hover:text-gray-900 focus:text-gray-900 no-underline px-4 py-2">
                                 {notice.Title} |
                             </a>
                         ))}

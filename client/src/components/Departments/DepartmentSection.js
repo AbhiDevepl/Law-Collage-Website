@@ -34,8 +34,8 @@ export default function DepartmentSection() {
 
         {/* Departments Grid */}
         <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-1">
-          {departments.map((dept, index) => (
-            <div key={index} className="group">
+          {departments.map((dept) => (
+            <div key={dept.link} className="group">
               <Link href={dept.link}>
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                   <div className="flex flex-col md:flex-row">
@@ -65,8 +65,8 @@ export default function DepartmentSection() {
 
                       {/* Features Grid */}
                       <div className="grid grid-cols-2 gap-4 mb-6">
-                        {dept.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center">
+                        {dept.features.map((feature) => (
+                          <div key={feature} className="flex items-center">
                             <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>

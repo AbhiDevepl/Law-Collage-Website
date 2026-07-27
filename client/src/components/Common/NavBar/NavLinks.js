@@ -131,8 +131,8 @@ function NavLinks({ setNavOpen }) {
 
   return (
     <>
-      {links.map((el, index) => (
-        <React.Fragment key={index}>
+      {links.map((el) => (
+        <React.Fragment key={el.path || el.title}>
           {el.isDropdown ? (
             <Dropdown data={el} setNavOpen={setNavOpen} />
           ) : (

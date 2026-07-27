@@ -28,7 +28,7 @@ const EventGallery = React.memo(({ images, title }) => {
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Event Gallery</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {images.map((img, index) => (
-          <div key={index} className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
+          <div key={img} className="relative h-48 rounded-lg overflow-hidden group cursor-pointer">
             <Image 
               src={img} 
               alt={`${title} - Photo ${index + 1}`} 
@@ -89,6 +89,10 @@ export default function createEventPage(eventData) {
         try {
           setLoading(true);
           const response = await fetch(`/api/getEventImages?folder=${eventData.folderName}`);
+          if (!response.ok) {
+            throw new Error(`Failed to load images: ${response.status}`);
+          }
+
           const data = await response.json();
           
           if (isMounted) {

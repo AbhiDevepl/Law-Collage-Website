@@ -34,8 +34,8 @@ const CDC = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cdcMembers.map((member, index) => (
-                                    <tr key={index}>
+                                {cdcMembers.map((member) => (
+                                    <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
                                         <td data-label="Designation">{member.designation}</td>
@@ -47,8 +47,8 @@ const CDC = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {cdcMembers.map((member, index) => (
-                                <div className="member-card" key={index}>
+                            {cdcMembers.map((member) => (
+                                <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>
                                         <div className="card-value">{member.sr}</div>

@@ -56,7 +56,7 @@ const Committees = () => {
             </div>
             <div className="committees-grid">
                 {committees.map((committee, index) => (
-                    <div key={index} className="committee-card">
+                    <div key={committee.id} className="committee-card">
                         <h3>{committee.title}</h3>
                         <p>{committee.description}</p>
                         <Link href={`/academics/resources/committes/${committee.id}`} className="learn-more-btn">

@@ -17,9 +17,9 @@ export default function ImportantLinks() {
     const fetchLinks = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/important-links`);
+        if (!response.ok) throw new Error(`Failed to fetch important links: ${response.status}`);
+
         const data = await response.json();
-        
-        if (!response.ok) throw new Error(data.message || 'Failed to fetch important links');
         
         setLinks(data.links || []);
         setIsLoading(false);

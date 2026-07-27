@@ -3,6 +3,10 @@ const FetchEventDataByIdFunc = (id) => {
         try {
             const response = await fetch(process.env.NEXT_PUBLIC_SERVERURL + '/api/v1/event/' + id);
 
+            if (!response.ok) {
+                throw new Error(`Failed to fetch event: ${response.status}`);
+            }
+
             const data = await response.json();
             resolve({
                 data: data.event,

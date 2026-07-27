@@ -43,60 +43,51 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
+  event.respondWith((async () => {
+    const cachedResponse = await caches.match(event.request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
 
-        // Clone the request because it's a one-time use stream
-        const fetchRequest = event.request.clone();
+    try {
+      const fetchRequest = event.request.clone();
+      const networkResponse = await fetch(fetchRequest);
 
-        return fetch(fetchRequest)
-          .then(response => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
+      if (!networkResponse.ok || networkResponse.type !== 'basic') {
+        return networkResponse;
+      }
 
-            // Clone the response because it's a one-time use stream
-            const responseToCache = response.clone();
+      const responseToCache = networkResponse.clone();
+      const url = new URL(event.request.url);
+      const isAsset =
+        url.pathname.startsWith('/_next/static/') ||
+        url.pathname.startsWith('/images/') ||
+        STATIC_ASSETS.includes(url.pathname) ||
+        /\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/.test(url.pathname);
 
-            // Check if the URL is an image or static asset
-            const url = new URL(event.request.url);
-            const isAsset = 
-              url.pathname.startsWith('/_next/static/') || 
-              url.pathname.startsWith('/images/') ||
-              STATIC_ASSETS.includes(url.pathname) ||
-              /\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/.test(url.pathname);
-
-            if (isAsset) {
-              caches.open(CACHE_NAME)
-                .then(cache => {
-                  cache.put(event.request, responseToCache);
-                })
-                .catch(error => {
-                  console.error('Caching failed:', error);
-                });
-            }
-
-            return response;
+      if (isAsset) {
+        caches.open(CACHE_NAME)
+          .then(cache => {
+            cache.put(event.request, responseToCache);
           })
           .catch(error => {
-            // Network request failed, try to return a cached offline page
-            console.error('Fetch failed:', error);
-            if (event.request.mode === 'navigate') {
-              return caches.match('/');
-            }
-            return new Response('Network error', { 
-              status: 408, 
-              headers: new Headers({ 'Content-Type': 'text/plain' }) 
-            });
+            console.error('Caching failed:', error);
           });
-      })
-  );
+      }
+
+      return networkResponse;
+    } catch (error) {
+      // Network request failed, try to return a cached offline page
+      console.error('Fetch failed:', error);
+      if (event.request.mode === 'navigate') {
+        return caches.match('/');
+      }
+      return new Response('Network error', {
+        status: 408,
+        headers: new Headers({ 'Content-Type': 'text/plain' })
+      });
+    }
+  })());
 });
 
 // Update a service worker

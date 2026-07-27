@@ -38,6 +38,10 @@ export default function ReachUsForm() {
         })
       });
 
+      if (!response.ok) {
+        throw new Error(`Submission failed: ${response.status}`);
+      }
+
       const data = await response.json();
       if (data.success) {
         setSubmitStatus('success');

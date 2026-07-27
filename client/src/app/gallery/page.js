@@ -22,7 +22,7 @@ export default function GalleryPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((image, index) => (
             <div 
-              key={index} 
+              key={image.src} 
               className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105"
               onClick={() => setSelectedImage(image)}
             >

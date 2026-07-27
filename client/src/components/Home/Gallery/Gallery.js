@@ -21,8 +21,8 @@ export default function Gallery() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
-            <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+          {galleryImages.map((image) => (
+            <div key={image.src} className="relative group overflow-hidden rounded-lg shadow-lg">
               <div className="aspect-w-4 aspect-h-3 relative h-0 min-h-[200px]">
                 <Image
                   src={image.src}

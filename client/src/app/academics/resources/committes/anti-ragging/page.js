@@ -31,8 +31,8 @@ const AntiRagging = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {antiRaggingMembers.map((member, index) => (
-                                    <tr key={index}>
+                                {antiRaggingMembers.map((member) => (
+                                    <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
                                         <td data-label="Designation">{member.designation}</td>
@@ -44,8 +44,8 @@ const AntiRagging = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {antiRaggingMembers.map((member, index) => (
-                                <div className="member-card" key={index}>
+                            {antiRaggingMembers.map((member) => (
+                                <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>
                                         <div className="card-value">{member.sr}</div>

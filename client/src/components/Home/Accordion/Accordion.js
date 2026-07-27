@@ -18,8 +18,8 @@ export default function Accordion() {
                 </h1>
             </AnimatedElement>
             <div className="space-y-4 transition-all duration-300 ease-in-out">
-                {AccordionData.map((data, index) => (
-                    <div key={index} className="transform transition-all duration-300 ease-in-out hover:scale-[1.02]">
+                {AccordionData.map((data) => (
+                    <div key={data.title} className="transform transition-all duration-300 ease-in-out hover:scale-[1.02]">
                         <AccordionCard title={data.title} description={data.description} />
                     </div>
                 ))}

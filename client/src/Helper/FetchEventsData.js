@@ -3,6 +3,10 @@ const FetchEventsData = () => {
         try {
             const response = await fetch(process.env.NEXT_PUBLIC_SERVERURL + '/api/v1/event/all');
            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch events: ${response.status}`);
+            }
+
             const data = await response.json();
             resolve({
                 data: data.events,

@@ -39,8 +39,8 @@ export default function HighlightsSection({ HorizontalScroll = true }) {
 				<div className={`lg:px-2 py-4 mx-auto ${HorizontalScroll ? "overflow-x-scroll" : "overflow-x-hidden"}`}>
 					{HighlightsData &&
 						<div className={`flex justify-center ${HorizontalScroll ? "w-fit flex-row" : "flex-wrap"}`}>
-							{HighlightsData.map((data, index) => (
-								<div key={index} className={`p-2 my-4 mx-2 md:w-96 ${HorizontalScroll ? "w-96" : "w-full"}`}>
+							{HighlightsData.map((data) => (
+								<div key={data._id || data.id || data.title} className={`p-2 my-4 mx-2 md:w-96 ${HorizontalScroll ? "w-96" : "w-full"}`}>
 									<HighlightCard data={data} />
 								</div>
 							))}

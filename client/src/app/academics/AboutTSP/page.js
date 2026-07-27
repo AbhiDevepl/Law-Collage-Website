@@ -121,7 +121,7 @@ export default function AboutTSP() {
                 { year: 2018, name: "Shivajirao Nagawade Daffodils School" },
                 { year: 2023, name: "Shri Shivajirao Nagawade Law College" }
               ].map((institution, index) => (
-                <div key={index} className="relative pl-8">
+                <div key={`-`} className="relative pl-8">
                   <div className="absolute left-0 top-0 h-full w-0.5 bg-blue-200">
                     <div className="absolute -left-1.5 top-2 h-4 w-4 rounded-full bg-blue-600"></div>
                   </div>

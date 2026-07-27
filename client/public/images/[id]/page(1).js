@@ -148,8 +148,8 @@ export default function EventPage({ params }) {
                 <div className="bg-gray-50 rounded-lg p-6">
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">Schedule</h2>
                   <ul className="list-disc pl-5 space-y-2">
-                    {event.details.schedule.map((item, index) => (
-                      <li key={index} className="text-gray-700">{item}</li>
+                    {event.details.schedule.map((item) => (
+                      <li key={item} className="text-gray-700">{item}</li>
                     ))}
                   </ul>
                 </div>
