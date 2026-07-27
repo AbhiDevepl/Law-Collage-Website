@@ -30,12 +30,19 @@ export default function AdminDashboard() {
     }
   }, [router]);
 
+  const handleAuthError = () => {
+    localStorage.removeItem('adminToken');
+    Cookies.remove('adminToken');
+    router.push('/admin/login');
+  };
+
   const fetchAnnouncements = async () => {
     try {
       const token = localStorage.getItem('adminToken');
       const headers = {};
       if (token) headers['Authorization'] = `Bearer ${token}`;
       const response = await fetch(`${API_BASE_URL}/announcements`, { headers });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to fetch announcements');
       setAnnouncements(data.announcements);
@@ -65,6 +72,7 @@ export default function AdminDashboard() {
         },
         body: JSON.stringify({ text: announcementText })
       });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to create announcement');
       setAnnouncements([data.announcement, ...announcements]);
@@ -90,6 +98,7 @@ export default function AdminDashboard() {
         },
         body: JSON.stringify({ text: announcementText })
       });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to update announcement');
       setAnnouncements(announcements.map(a => a._id === editingId ? data.announcement : a));
@@ -114,6 +123,7 @@ export default function AdminDashboard() {
           'Authorization': `Bearer ${token}`
         }
       });
+      if (response.status === 401) { handleAuthError(); return; }
       if (!response.ok) throw new Error('Failed to delete announcement');
       setAnnouncements(announcements.filter(a => a._id !== id));
       setSuccess('Announcement deleted successfully');

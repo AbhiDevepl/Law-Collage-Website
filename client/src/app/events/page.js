@@ -273,7 +273,7 @@ export default function EventsPage() {
       {/* Hero/Cover Section */}
       <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
         <Image
-          src={getRefreshedImageUrl("/images/events/caver.jpg")}
+          src={getRefreshedImageUrl("/images/llb-department.jpg")}
           alt="College Events Cover"
           fill
           priority

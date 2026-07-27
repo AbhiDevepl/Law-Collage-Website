@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
@@ -35,6 +36,12 @@ export default function ImportantLinksAdmin() {
     }
   }, [router]);
 
+  const handleAuthError = () => {
+    localStorage.removeItem('adminToken');
+    Cookies.remove('adminToken');
+    router.push('/admin/login');
+  };
+
   const fetchLinks = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/important-links/admin/all`, {
@@ -42,6 +49,7 @@ export default function ImportantLinksAdmin() {
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
         }
       });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to fetch important links');
       setLinks(data.links);
@@ -53,6 +61,7 @@ export default function ImportantLinksAdmin() {
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
+    Cookies.remove('adminToken');
     router.push('/admin/login');
   };
 
@@ -77,6 +86,7 @@ export default function ImportantLinksAdmin() {
         },
         body: JSON.stringify(formData)
       });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to create link');
       setLinks([data.link, ...links]);
@@ -100,6 +110,7 @@ export default function ImportantLinksAdmin() {
         },
         body: JSON.stringify(formData)
       });
+      if (response.status === 401) { handleAuthError(); return; }
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to update link');
       setLinks(links.map(link => link._id === editingId ? data.link : link));
@@ -120,6 +131,7 @@ export default function ImportantLinksAdmin() {
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
         }
       });
+      if (response.status === 401) { handleAuthError(); return; }
       if (!response.ok) throw new Error('Failed to delete link');
       setLinks(links.filter(link => link._id !== id));
       setSuccess('Link deleted successfully');
