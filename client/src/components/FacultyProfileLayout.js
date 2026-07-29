@@ -21,14 +21,28 @@ import { getFacultyBySlug, getOtherFaculty } from "@/data/faculty";
 
 /** Icon map keyed by field type */
 const FIELD_ICONS = {
-  designation:    <Briefcase  size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  additional:     <Award      size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  education:      <GraduationCap size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  specialization: <Scale      size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  industry:       <Building2  size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  teaching:       <BookOpen   size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  contact:        <Mail       size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
-  interest:       <Lightbulb  size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
+  designation: (
+    <Briefcase size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  additional: (
+    <Award size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  education: (
+    <GraduationCap size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  specialization: (
+    <Scale size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  industry: (
+    <Building2 size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  teaching: (
+    <BookOpen size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
+  contact: <Mail size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />,
+  interest: (
+    <Lightbulb size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+  ),
 };
 
 /**
@@ -56,12 +70,18 @@ export default function FacultyProfileLayout({ slug }) {
   return (
     <div className="bg-gray-50 min-h-screen py-8">
       <div className="max-w-3xl mx-auto px-4">
-
         {/* ── Breadcrumb ────────────────────────────────────────────── */}
         <nav className="flex items-center gap-1.5 text-sm text-gray-500 mb-4 flex-wrap">
-          <Link href="/" className="hover:text-blue-700 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-blue-700 transition-colors">
+            Home
+          </Link>
           <ChevronRight size={13} className="text-gray-400" />
-          <Link href="/faculty" className="hover:text-blue-700 transition-colors">Faculty</Link>
+          <Link
+            href="/faculty"
+            className="hover:text-blue-700 transition-colors"
+          >
+            Faculty
+          </Link>
           <ChevronRight size={13} className="text-gray-400" />
           <span className="text-blue-900 font-medium">{member.shortName}</span>
         </nav>
@@ -80,7 +100,6 @@ export default function FacultyProfileLayout({ slug }) {
 
         {/* ── Profile card ─────────────────────────────────────────── */}
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
-
           {/* Header */}
           <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8 bg-gradient-to-br from-blue-900 to-blue-700 text-white">
             <div className="flex-shrink-0">
@@ -98,11 +117,17 @@ export default function FacultyProfileLayout({ slug }) {
               <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-1">
                 {member.name}
               </h1>
-              <p className="text-blue-200 font-medium text-base mb-2">{member.role}</p>
-              <p className="text-sm text-blue-100">
-                <span className="font-semibold text-white">Specialization: </span>
-                {member.specialization}
+              <p className="text-blue-200 font-medium text-base mb-2">
+                {member.role}
               </p>
+              {member.specialization && (
+                <p className="text-sm text-blue-100">
+                  <span className="font-semibold text-white">
+                    Specialization:{" "}
+                  </span>
+                  {member.specialization}
+                </p>
+              )}
             </div>
           </div>
 
@@ -125,7 +150,10 @@ export default function FacultyProfileLayout({ slug }) {
 
                 {/* Dynamic field rows */}
                 {member.fields.map((field) => (
-                  <tr key={field.label} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={field.label}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
                     <th className="px-6 py-4 font-semibold text-gray-700 bg-gray-50 text-left align-top">
                       <span className="flex items-center gap-2">
                         {FIELD_ICONS[field.type] ?? null}
@@ -165,7 +193,6 @@ export default function FacultyProfileLayout({ slug }) {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </div>
