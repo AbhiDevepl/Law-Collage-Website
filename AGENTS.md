@@ -22,7 +22,7 @@ docker-compose.prod.yml → Coolify/Traefik deployment
 ### Coolify / Traefik
 
 - Traefik labels handle domain routing, TLS, security headers
-- All services on `coolify` external Docker network
+- All services on `dokploy-network` external Docker network
 - SSL via Let's Encrypt auto-managed
 - `www.ssnlc.in` → `ssnlc.in` redirect
 
@@ -71,3 +71,14 @@ docker compose -f docker-compose.prod.yml up -d
 - Client-side components use `"use client"` directive
 - Server runs on port 5000
 - Client runs on port 3000 (dev)
+
+## Gotchas
+
+- **Inconsistent server directory structure** — Both `model/` and `models/` exist, both `route/` and `routes/` exist. New server files should match the convention of the nearest existing file in that area.
+- **JWT auth bypass** — When `NODE_ENV=development`, all JWT-protected routes are open. Only affects local dev.
+- **No test framework** — No tests, no test deps, no test scripts exist.
+- **Root `index.js` is stale** — References non-existent paths. Dead file, ignore it.
+- **No TypeScript** — Project uses JavaScript with `jsconfig.json` for path aliases (`@/*` → `./src/*`).
+- **Mixed faculty data** — Static data in `client/src/data/faculty.js` and dynamic data via server API. Both exist.
+- **`NODE_OPTIONS='--no-deprecation'`** — Already set on client scripts to suppress `util._extend` warning on Node 24.
+- **Stylelint** — Root-level config enforces Tailwind at-rule compatibility.
