@@ -44,6 +44,7 @@ export default function Founder() {
                   src="https://ik.imagekit.io/sk67opnzi/images/founder/bapu.jpg"
                   alt="Hon'ble Shri Shivajirao (Bapu) Nagawade"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   style={{ objectFit: 'cover' }}
                   className="rounded-lg"
                 />

@@ -45,10 +45,14 @@ export default function OptimizedImage({
     rootMargin: '200px 0px',
   });
 
+  const optimizedSrc = src && src.includes('ik.imagekit.io')
+    ? `${src}${src.includes('?') ? '&' : '?'}tr=q-${quality}`
+    : src;
+
   useEffect(() => {
-    setImgSrc(src);
+    setImgSrc(optimizedSrc);
     setIsLoaded(false);
-  }, [src]);
+  }, [optimizedSrc]);
 
   const handleError = () => {
     if (imgSrc !== fallbackSrc) {

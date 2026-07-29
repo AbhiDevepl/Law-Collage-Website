@@ -44,6 +44,7 @@ export default function President() {
                   src="https://ik.imagekit.io/sk67opnzi/images/founder/dada.jpg"
                   alt="Shri Rajendra (Dada) Nagawade"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   style={{ objectFit: 'cover' }}
                   className="rounded-lg"
                 />

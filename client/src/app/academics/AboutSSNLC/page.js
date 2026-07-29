@@ -38,7 +38,6 @@ export default function AboutSSNLC() {
                 width={120}
                 height={120}
                 className="object-contain"
-                priority
               />
             </div>
           </div>

@@ -3,13 +3,16 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 FROM base AS deps
-COPY package.json package-lock.json* ./
+WORKDIR /app/client
+COPY client/package.json client/package-lock.json* ./
 ENV NODE_ENV=development
 RUN npm ci
 
 FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+WORKDIR /app/client
+COPY --from=deps /app/client/node_modules ./node_modules
+COPY client/ .
+COPY scripts/ ../scripts/
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
@@ -23,9 +26,9 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/client/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/client/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/client/.next/static ./.next/static
 USER nextjs
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \

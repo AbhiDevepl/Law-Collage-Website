@@ -45,6 +45,7 @@ export default function DepartmentSection() {
                         src={dept.image}
                         alt={dept.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-blue-900 opacity-20 group-hover:opacity-0 transition-opacity duration-300"></div>

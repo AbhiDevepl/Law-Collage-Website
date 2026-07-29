@@ -11,6 +11,7 @@ export default function LLBDepartmentPage() {
           src="https://ik.imagekit.io/sk67opnzi/images/llb-department.jpg"
           alt="LLB Department"
           fill
+          sizes="100vw"
           className="object-cover object-center brightness-90"
           priority
         />

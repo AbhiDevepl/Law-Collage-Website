@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--no-deprecation' next dev",
+    "prebuild": "node ../scripts/sync-imagekit.js && node ../scripts/apply-imagekit-mapping.js",
     "build": "NODE_OPTIONS='--no-deprecation' next build",
     "start": "NODE_OPTIONS='--no-deprecation' next start",
     "lint": "next lint"

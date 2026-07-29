@@ -1,7 +1,8 @@
 services:
   client:
     build:
-      context: ./client
+      context: .
+      dockerfile: client/Dockerfile
       args:
         - NEXT_PUBLIC_API_URL=https://ssnlc.in/api
     restart: always

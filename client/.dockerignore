@@ -8,3 +8,4 @@ Dockerfile
 .env*.local
 build
 dist
+public/_migrated-archive

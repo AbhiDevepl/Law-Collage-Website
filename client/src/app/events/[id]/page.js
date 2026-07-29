@@ -101,6 +101,7 @@ export default function EventPage({ params }) {
             src={event.image}
             alt={event.title}
             fill
+            sizes="100vw"
             className="object-cover"
           />
         </div>

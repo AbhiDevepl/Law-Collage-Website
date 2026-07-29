@@ -65,6 +65,7 @@ export default function LeadershipCards() {
                   src={leader.image}
                   alt={leader.name}
                   fill
+                  sizes="144px"
                   style={{ objectFit: 'cover', objectPosition: 'top ' }}
                   className="rounded-full z-10 object-cover"
                 />

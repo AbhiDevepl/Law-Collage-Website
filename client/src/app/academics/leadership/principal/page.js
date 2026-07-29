@@ -36,6 +36,7 @@ export default function PrincipalPage() {
                 src="https://ik.imagekit.io/sk67opnzi/images/founder/cabin.jpg"
                 alt="Dr. Anjula S. Chowbe"
                 fill
+                sizes="192px"
                 style={{ objectFit: 'cover', objectPosition: 'top' }}
                 className="z-10"
               />

@@ -89,6 +89,7 @@ export default function Leadership() {
                       src={leader.image}
                       alt={leader.name}
                       fill
+                      sizes="144px"
                       style={{ objectFit: 'cover', objectPosition: 'top' }}
                       className="rounded-full z-10 object-cover"
                     />
@@ -128,6 +129,7 @@ export default function Leadership() {
                     src="https://ik.imagekit.io/sk67opnzi/images/logo.png"
                     alt="SSNLC Logo"
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     style={{ objectFit: 'contain' }}
                     className="bg-white p-2"
                   />
@@ -161,6 +163,7 @@ export default function Leadership() {
                     src="https://ik.imagekit.io/sk67opnzi/images/founder/cabin.jpg"
                     alt="Dr. Anjula S. Chowbe"
                     fill
+                    sizes="160px"
                     style={{ objectFit: 'cover', objectPosition: 'top' }}
                   />
                 </div>

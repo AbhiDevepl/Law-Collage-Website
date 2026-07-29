@@ -44,6 +44,7 @@ export default function Secretary() {
                   src="https://ik.imagekit.io/sk67opnzi/images/founder/vahini.jpg"
                   alt="Mrs. Anuradha (Tai) Nagawade"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   style={{ objectFit: 'cover' }}
                   className="rounded-lg"
                 />

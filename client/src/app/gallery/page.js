@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 
 const galleryImages = [
   { src: 'https://ik.imagekit.io/sk67opnzi/images/photo1.jpg', alt: 'Gallery Image 1' },
@@ -27,7 +27,7 @@ export default function GalleryPage() {
               onClick={() => setSelectedImage(image)}
             >
               <div className="aspect-w-4 aspect-h-3 relative h-0 min-h-[200px]">
-                <Image
+                <OptimizedImage
                   src={image.src}
                   alt={image.alt}
                   fill
@@ -55,13 +55,12 @@ export default function GalleryPage() {
                 ×
               </button>
               <div className="relative aspect-w-16 aspect-h-9">
-                <Image
+                <OptimizedImage
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 80vw"
                   className="object-contain"
-                  priority
                 />
               </div>
             </div>

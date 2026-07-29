@@ -22,6 +22,7 @@ export default function AboutCard() {
                                     src='https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg'
                                     alt='SSNLC Campus'
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                     className="object-cover rounded-lg"
                                 />
                             </div>

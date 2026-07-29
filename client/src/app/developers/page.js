@@ -170,7 +170,6 @@ export default function Developers() {
                         height={112}
                         className="rounded-full border-4 border-white shadow-lg object-cover"
                         onError={() => handleImageError(dev.name)}
-                        priority={true}
                         key={imageKeys[dev.name] || dev.photo}
                       />
                     </div>

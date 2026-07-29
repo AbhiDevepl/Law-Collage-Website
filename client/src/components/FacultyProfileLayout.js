@@ -91,7 +91,6 @@ export default function FacultyProfileLayout({ slug }) {
                   fill
                   className="object-cover object-top"
                   sizes="160px"
-                  priority
                 />
               </div>
             </div>

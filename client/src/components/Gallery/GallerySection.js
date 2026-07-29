@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/Common/OptimizedImage';
 
 export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -80,10 +80,11 @@ export default function GallerySection() {
               onClick={() => setSelectedImage(image)}
             >
               <div className="relative h-64 rounded-xl overflow-hidden">
-                <Image
+                <OptimizedImage
                   src={image.src}
                   alt={image.alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transform transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-blue-900 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
@@ -115,7 +116,7 @@ export default function GallerySection() {
                 </svg>
               </button>
               <div className="relative h-[80vh]">
-                <Image
+                <OptimizedImage
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   fill
