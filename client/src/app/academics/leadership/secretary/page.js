@@ -41,7 +41,7 @@ export default function Secretary() {
             >
               <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/founder/vahini.jpg"
+                  src="https://ik.imagekit.io/sk67opnzi/images/founder/vahini.jpg"
                   alt="Mrs. Anuradha (Tai) Nagawade"
                   fill
                   style={{ objectFit: 'cover' }}

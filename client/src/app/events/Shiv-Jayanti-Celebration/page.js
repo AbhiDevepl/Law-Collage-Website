@@ -9,11 +9,11 @@ const eventData = {
   date: "19th February, 2025",
   images: [
     {
-      src: '/images/Shiv-Jayanti-Celebration/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Shiv-Jayanti-Celebration/1.jpg',
       alt: 'Shiv Jayanti Main Celebration'
     },
     {
-      src: '/images/Shiv-Jayanti-Celebration/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Shiv-Jayanti-Celebration/2.jpg',
       alt: 'Cultural Performances'
     }
   ],

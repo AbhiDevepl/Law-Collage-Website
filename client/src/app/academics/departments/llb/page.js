@@ -8,7 +8,7 @@ export default function LLBDepartmentPage() {
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 w-full mb-10">
         <Image
-          src="/images/llb-department.jpg"
+          src="https://ik.imagekit.io/sk67opnzi/images/llb-department.jpg"
           alt="LLB Department"
           fill
           className="object-cover object-center brightness-90"

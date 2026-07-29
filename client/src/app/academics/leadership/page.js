@@ -11,7 +11,7 @@ export default function Leadership() {
       id: 'founder',
       name: 'Hon\'ble Shri Shivajirao (Bapu) Nagawade',
       title: 'Founder (Late)',
-      image: '/images/founder/bapu.jpg',
+      image: 'https://ik.imagekit.io/sk67opnzi/images/founder/bapu.jpg',
       description: 'A visionary statesman, former Member of the Legislative Assembly (MLA), and President of the Maharashtra State Cooperative Sugar Association who recognized the importance of education in rural development.',
       link: '/academics/leadership/founder'
     },
@@ -19,7 +19,7 @@ export default function Leadership() {
       id: 'president',
       name: 'Shri Rajendra (Dada) Nagawade',
       title: 'President',
-      image: '/images/founder/dada.jpg',
+      image: 'https://ik.imagekit.io/sk67opnzi/images/founder/dada.jpg',
       description: 'Chairman of Sahakarmaharshi Shivajirao Narayanrao Nagawade Cooperative Sugar Factory Ltd. and Member of the Maharashtra State Board of Higher Secondary Education, Pune.',
       link: '/academics/leadership/president'
     },
@@ -27,7 +27,7 @@ export default function Leadership() {
       id: 'secretary',
       name: 'Mrs. Anuradha (Tai) Nagawade',
       title: 'Secretary',
-      image: '/images/founder/vahini.jpg',
+      image: 'https://ik.imagekit.io/sk67opnzi/images/founder/vahini.jpg',
       description: 'District President of the Ahmednagar Mahila Congress Committee and Chairperson of the Women Welfare and Child Development Committee, Zilla Parishad, Ahmednagar.',
       link: '/academics/leadership/secretary'
     }
@@ -125,7 +125,7 @@ export default function Leadership() {
               <div className="md:w-1/3">
                 <div className="relative h-64 w-64 mx-auto border-4 border-blue-300 shadow-lg">
                   <Image
-                    src="/images/logo.png"
+                    src="https://ik.imagekit.io/sk67opnzi/images/logo.png"
                     alt="SSNLC Logo"
                     fill
                     style={{ objectFit: 'contain' }}
@@ -158,7 +158,7 @@ export default function Leadership() {
               <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-6">
                 <div className="relative w-40 h-48 shadow-lg border-4 border-blue-100">
                   <Image
-                    src="/images/founder/cabin.jpg"
+                    src="https://ik.imagekit.io/sk67opnzi/images/founder/cabin.jpg"
                     alt="Dr. Anjula S. Chowbe"
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'top' }}

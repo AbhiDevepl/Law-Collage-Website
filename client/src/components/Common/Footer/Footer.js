@@ -17,7 +17,7 @@ function Footer() {
             <div className="flex items-center mb-4">
               <div className="mr-3">
                 <Image
-                  src="/images/logo.png"
+                  src="https://ik.imagekit.io/sk67opnzi/images/logo.png"
                   alt="SSNLC Logo"
                   width={60}
                   height={60}

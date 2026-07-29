@@ -7,27 +7,27 @@ export default function GallerySection() {
 
   const galleryImages = [
     {
-      src: "/images/carousel/collegepic(1).jpg",
+      src: "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg",
       alt: "College Campus",
       category: "Campus"
     },
     {
-      src: "/images/carousel/collegepic(2).png",
+      src: "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_2_.png",
       alt: "Library",
       category: "Facilities"
     },
     {
-      src: "/images/carousel/collegepic(9).png",
+      src: "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_9_.png",
       alt: "Moot Court",
       category: "Facilities"
     },
     {
-      src: "/images/photo3.jpg",
+      src: "https://ik.imagekit.io/sk67opnzi/images/photo3.jpg",
       alt: "Student Activities",
       category: "Events"
     },
     {
-      src: "/images/photo4.jpg",
+      src: "https://ik.imagekit.io/sk67opnzi/images/photo4.jpg",
       alt: "Classroom",
       category: "Facilities"
     }

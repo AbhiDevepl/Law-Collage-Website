@@ -41,7 +41,7 @@ export default function Founder() {
             >
               <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/founder/bapu.jpg"
+                  src="https://ik.imagekit.io/sk67opnzi/images/founder/bapu.jpg"
                   alt="Hon'ble Shri Shivajirao (Bapu) Nagawade"
                   fill
                   style={{ objectFit: 'cover' }}

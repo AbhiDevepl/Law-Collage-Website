@@ -50,14 +50,14 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/collagelogonew.png', sizes: '32x32', type: 'image/png' },
-      { url: '/collegelogonew.png', sizes: '16x16', type: 'image/png' },
+      { url: 'https://ik.imagekit.io/sk67opnzi/collegelogonew.png', sizes: '32x32', type: 'image/png' },
+      { url: 'https://ik.imagekit.io/sk67opnzi/collegelogonew.png', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/collagelogonew.png',
-    apple: '/collagelogonew.png',
+    shortcut: 'https://ik.imagekit.io/sk67opnzi/collegelogonew.png',
+    apple: 'https://ik.imagekit.io/sk67opnzi/collegelogonew.png',
     other: {
       rel: 'apple-touch-icon-precomposed',
-      url: '/collagelogonew.png',
+      url: 'https://ik.imagekit.io/sk67opnzi/collegelogonew.png',
     },
   },
   openGraph: {
@@ -111,7 +111,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/logo.jpeg" />
+        <link rel="apple-touch-icon" href="https://ik.imagekit.io/sk67opnzi/logo.jpeg" />
         <link rel="apple-touch-startup-image" href="/images/splash.png" />
         
         {/* Structured Data for Rich Search Results */}

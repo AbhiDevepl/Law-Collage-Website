@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const galleryImages = [
-  { src: '/images/photo1.jpg', alt: 'Gallery Image 1' },
-  { src: '/images/photo2.jpg', alt: 'Gallery Image 2' },
-  { src: '/images/photo3.jpg', alt: 'Gallery Image 3' },
-  { src: '/images/photo4.jpg', alt: 'Gallery Image 4' }
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo1.jpg', alt: 'Gallery Image 1' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo2.jpg', alt: 'Gallery Image 2' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo3.jpg', alt: 'Gallery Image 3' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo4.jpg', alt: 'Gallery Image 4' }
 ];
 
 export default function Gallery() {

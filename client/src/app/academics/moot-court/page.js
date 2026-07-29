@@ -74,7 +74,7 @@ export default function MootCourtPage() {
             {/* Second Image */}
             <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-xl">
               <OptimizedImage
-                src="/images/moot-court/1.jpg"
+                src="https://ik.imagekit.io/sk67opnzi/images/moot-court/1.jpg"
                 alt="Students participating in moot court competition"
                 className="w-full h-full"
                 objectFit="cover"

@@ -9,19 +9,19 @@ const eventData = {
   date: "September 26, 2024",
   images: [
     {
-      src: '/images/student-induction/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/student-induction/1.jpg',
       alt: 'Student Induction Program - Welcome Ceremony'
     },
     {
-      src: '/images/student-induction/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/student-induction/2.jpg',
       alt: 'Student Induction Program - Guest Speakers'
     },
     {
-      src: '/images/student-induction/3.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/student-induction/3.jpg',
       alt: 'Student Induction Program - Faculty Address'
     },
     {
-      src: '/images/student-induction/4.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/student-induction/4.jpg',
       alt: 'Student Induction Program - Student Orientation'
     }
   ],

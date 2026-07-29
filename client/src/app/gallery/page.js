@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 const galleryImages = [
-  { src: '/images/photo1.jpg', alt: 'Gallery Image 1' },
-  { src: '/images/photo2.jpg', alt: 'Gallery Image 2' },
-  { src: '/images/photo3.jpg', alt: 'Gallery Image 3' },
-  { src: '/images/photo4.jpg', alt: 'Gallery Image 4' },
-  { src: '/images/photo5.jpg', alt: 'Gallery Image 5' }
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo1.jpg', alt: 'Gallery Image 1' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo2.jpg', alt: 'Gallery Image 2' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo3.jpg', alt: 'Gallery Image 3' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo4.jpg', alt: 'Gallery Image 4' },
+  { src: 'https://ik.imagekit.io/sk67opnzi/images/photo5.jpg', alt: 'Gallery Image 5' }
 ];
 
 export default function GalleryPage() {

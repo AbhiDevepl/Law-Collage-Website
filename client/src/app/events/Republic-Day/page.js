@@ -9,7 +9,7 @@ const eventData = {
   date: "26th January, 2025",
   images: [
     {
-      src: '/images/Republic-Day/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Republic-Day/1.jpg',
       alt: 'Republic Day Flag Hoisting'
     },
     {

@@ -9,11 +9,11 @@ const eventData = {
   date: "3rd March, 2025",
   images: [
     {
-      src: '/images/Mismatch-Day/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Mismatch-Day/1.jpg',
       alt: 'Students in Mismatched Outfits'
     },
     {
-      src: '/images/Mismatch-Day/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Mismatch-Day/2.jpg',
       alt: 'Fun Activities and Games'
     }
   ],

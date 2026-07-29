@@ -9,11 +9,11 @@ const eventData = {
   date: "6th-7th February, 2025",
   images: [
     {
-      src: '/images/Picnic-To-Alibaug/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Picnic-To-Alibaug/1.jpg',
       alt: 'Students at Alibaug Beach'
     },
     {
-      src: '/images/Picnic-To-Alibaug/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Picnic-To-Alibaug/2.jpg',
       alt: 'Group Activities'
     }
   ],

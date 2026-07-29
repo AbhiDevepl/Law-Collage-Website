@@ -9,11 +9,11 @@ const eventData = {
   date: "20th March, 2025",
   images: [
     {
-      src: '/images/14. Shaskiya Yojna Mohotsav/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/14__Shaskiya_Yojna_Mohotsav/1.jpg',
       alt: 'Government Schemes Awareness Program'
     },
     {
-      src: '/images/14. Shaskiya Yojna Mohotsav/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/14__Shaskiya_Yojna_Mohotsav/2.jpg',
       alt: 'Interactive Session on Government Schemes'
     }
   ],

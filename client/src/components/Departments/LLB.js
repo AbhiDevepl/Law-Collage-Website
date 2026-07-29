@@ -16,7 +16,7 @@ export default function LLB() {
         <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
           <div className="relative h-[300px] w-full">
             <Image
-              src="/images/llb-department.jpg"
+              src="https://ik.imagekit.io/sk67opnzi/images/llb-department.jpg"
               alt="LLB Department"
               fill
               className="rounded-lg object-cover"

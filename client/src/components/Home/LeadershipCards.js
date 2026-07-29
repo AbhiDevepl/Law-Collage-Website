@@ -9,7 +9,7 @@ const leaders = [
     id: "founder",
     name: "Hon'ble Shri Shivajirao (Bapu) Nagawade",
     title: "Founder (Late)",
-    image: "/images/founder/bapu.jpg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/founder/bapu.jpg",
     description:
       "A visionary statesman, former Member of the Legislative Assembly (MLA), and President of the Maharashtra State Cooperative Sugar Association who recognized the importance of education in rural development.",
     link: "/academics/leadership/founder",
@@ -18,7 +18,7 @@ const leaders = [
     id: "president",
     name: "Shri Rajendra (Dada) Nagawade",
     title: "President",
-    image: "/images/founder/dada.jpg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/founder/dada.jpg",
     description:
       "Chairman of Sahakarmaharshi Shivajirao Narayanrao Nagawade Cooperative Sugar Factory Ltd. and Member of the Maharashtra State Board of Higher Secondary Education, Pune.",
     link: "/academics/leadership/president",
@@ -27,7 +27,7 @@ const leaders = [
     id: "secretary",
     name: "Mrs. Anuradha (Tai) Nagawade",
     title: "Secretary",
-    image: "/images/founder/vahini.jpg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/founder/vahini.jpg",
     description:
       "District President of the Ahmednagar Mahila Congress Committee and Chairperson of the Women Welfare and Child Development Committee, Zilla Parishad, Ahmednagar.",
     link: "/academics/leadership/secretary",

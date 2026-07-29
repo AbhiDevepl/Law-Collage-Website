@@ -101,7 +101,7 @@ export default function Navbar() {
               <div className="flex justify-center w-auto mb-1 sm:mb-0 relative">
                 <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden transition-all duration-300 group-hover:scale-110 hover:scale-110">
                   <Image
-                    src="/collegelogonew.png"
+                    src="https://ik.imagekit.io/sk67opnzi/collegelogonew.png"
                     alt="SSNLC Logo"
                     fill
                     className="object-contain rounded-full"

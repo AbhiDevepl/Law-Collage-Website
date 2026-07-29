@@ -9,11 +9,11 @@ const eventData = {
   date: "1st March, 2025",
   images: [
     {
-      src: '/images/Traditional Day/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Traditional_Day/1.jpg',
       alt: 'Students in Traditional Attire'
     },
     {
-      src: '/images/Traditional Day/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Traditional_Day/2.jpg',
       alt: 'Cultural Performances'
     }
   ],

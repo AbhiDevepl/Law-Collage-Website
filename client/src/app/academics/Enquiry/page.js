@@ -71,7 +71,7 @@ export default function ReachUsForm() {
           <h2 id="enquiry-title" className="text-3xl font-bold text-center mb-8 text-gray-800 relative">
           <div className="flex justify-center mb-6">
             <Image
-              src="/images/logo.png"
+              src="https://ik.imagekit.io/sk67opnzi/images/logo.png"
               alt="College Logo"
               width={150}
               height={150}

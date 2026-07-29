@@ -33,7 +33,7 @@ export default function AboutSSNLC() {
           <div className="flex justify-center mb-8">
             <div className="bg-white shadow-xl p-4 border-4 border-blue-100">
             <Image
-              src="/collegelogonew.png"
+              src="https://ik.imagekit.io/sk67opnzi/collegelogonew.png"
                 alt="SSNLC Logo"
                 width={120}
                 height={120}

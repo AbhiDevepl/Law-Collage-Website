@@ -91,7 +91,7 @@ export default function LibraryPage() {
             </div>
             <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden shadow-lg">
               <OptimizedImage
-                src="/images/library/reading-area.jpg"
+                src="https://ik.imagekit.io/sk67opnzi/images/library/reading-area.jpg"
                 alt="Library Reading Area"
                 className="w-full h-full"
                 objectFit="cover"
@@ -109,7 +109,7 @@ export default function LibraryPage() {
           className="relative h-[300px] sm:h-[350px] md:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl mb-8 sm:mb-10"
         >
           <OptimizedImage
-            src="/images/library/book-collection.jpg"
+            src="https://ik.imagekit.io/sk67opnzi/images/library/book-collection.jpg"
             alt="Extensive Law Book Collection"
             className="w-full h-full"
             objectFit="cover"

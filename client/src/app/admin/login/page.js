@@ -56,7 +56,7 @@ export default function AdminLogin() {
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               <Image
-                src="/collegelogo.png"
+                src="https://ik.imagekit.io/sk67opnzi/collegelogo.png"
                 alt="SSNLC Logo"
                 width={80}
                 height={80}

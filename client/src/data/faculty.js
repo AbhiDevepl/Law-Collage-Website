@@ -12,7 +12,7 @@ export const FACULTY = [
     name: "Dr. Anjula Shrikrishna Chowbe",
     shortName: "Dr. Anjula Chowbe",
     role: "Principal, HOD",
-    image: "/images/faculty/principal.jpg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/faculty/principal.jpg",
     specialization: "Constitutional Law",
     fields: [
       { label: "Designation",            value: "Principal, HOD",       type: "designation" },
@@ -30,7 +30,7 @@ export const FACULTY = [
     name: "Prof. Purushottam Jagannath Fate",
     shortName: "Prof. Fate Jagannath",
     role: "Assistant Professor",
-    image: "/images/faculty/fate.jpg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/faculty/fate.jpg",
     specialization: "Business Law",
     fields: [
       { label: "Designation",            value: "Assistant Professor",   type: "designation" },
@@ -52,7 +52,7 @@ export const FACULTY = [
     name: "Dr. Dipali V. Jawale (More)",
     shortName: "Dr. Dipali Jawale",
     role: "Assistant Professor, College Examination Officer",
-    image: "/images/faculty/Depali.jpeg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/faculty/Depali.jpeg",
     specialization: "Law",
     fields: [
       { label: "Designation",            value: "Assistant Professor, College Examination Officer", type: "designation" },
@@ -90,7 +90,7 @@ export const FACULTY = [
     name: "Adv. Rupali D. Gole",
     shortName: "Adv. Rupali Gole",
     role: "Assistant Professor",
-    image: "/images/faculty/Rupali.jpeg",
+    image: "https://ik.imagekit.io/sk67opnzi/images/faculty/Rupali.jpeg",
     specialization: "Corporate Law, Insolvency & Bankruptcy Law, Criminal Law",
     fields: [
       { label: "Designation",            value: "Assistant Professor",   type: "designation" },

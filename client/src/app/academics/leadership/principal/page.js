@@ -33,7 +33,7 @@ export default function PrincipalPage() {
           <div className="flex justify-center mb-8">
             <div className="relative w-48 h-56 shadow-lg border-4 border-blue-100">
               <Image
-                src="/images/founder/cabin.jpg"
+                src="https://ik.imagekit.io/sk67opnzi/images/founder/cabin.jpg"
                 alt="Dr. Anjula S. Chowbe"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'top' }}

@@ -9,7 +9,7 @@ export default imagekit;
 
 /**
  * Transform a local path to an ImageKit URL with optimizations.
- * @param {string} localPath - The local path (e.g. "/images/photo1.jpg")
+ * @param {string} localPath - The local path (e.g. "https://ik.imagekit.io/sk67opnzi/images/photo1.jpg")
  * @param {object} options - Transformation options
  * @param {number} [options.width] - Desired width
  * @param {number} [options.height] - Desired height

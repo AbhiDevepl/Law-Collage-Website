@@ -9,11 +9,11 @@ const eventData = {
   date: "25th March, 2025",
   images: [
     {
-      src: '/images/LEGAL-CHART/16.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/LEGAL-CHART/16.jpg',
       alt: 'Students Creating Legal Charts'
     },
     {
-      src: '/images/LEGAL-CHART/16.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/LEGAL-CHART/16.jpg',
       alt: 'Legal Charts Display'
     }
   ],

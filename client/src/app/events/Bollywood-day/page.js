@@ -9,11 +9,11 @@ const eventData = {
   date: "2nd March, 2025",
   images: [
     {
-      src: '/images/Bollywood-day/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Bollywood-day/1.jpg',
       alt: 'Students in Bollywood Character Costumes'
     },
     {
-      src: '/images/Bollywood-day/2.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Bollywood-day/2.jpg',
       alt: 'Dance Performances'
     }
   ],

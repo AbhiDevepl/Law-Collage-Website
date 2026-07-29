@@ -30,7 +30,7 @@ export default function Department() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-[300px] w-full">
             <Image
-              src="/images/llb-department.jpg"
+              src="https://ik.imagekit.io/sk67opnzi/images/llb-department.jpg"
               alt="LLB Department"
               fill
               className="rounded-lg object-cover"

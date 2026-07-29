@@ -9,7 +9,7 @@ const eventData = {
   date: "18th January, 2025",
   images: [
     {
-      src: '/images/Shri-Shivajirao-Nagawade-Jayanti/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Shri-Shivajirao-Nagawade-Jayanti/1.jpg',
       alt: 'Shri Shivajirao Nagawade Jayanti Rally'
     },
     {

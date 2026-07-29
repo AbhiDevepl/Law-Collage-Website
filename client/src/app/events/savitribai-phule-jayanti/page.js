@@ -9,7 +9,7 @@ const eventData = {
   date: "3rd January, 2024",
   images: [
     {
-      src: '/images/savitribai-phule-jayanti/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/savitribai-phule-jayanti/1.jpg',
       alt: 'Savitribai Phule Jayanti Celebration'
     },
     {

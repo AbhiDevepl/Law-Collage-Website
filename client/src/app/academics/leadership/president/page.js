@@ -41,7 +41,7 @@ export default function President() {
             >
               <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/founder/dada.jpg"
+                  src="https://ik.imagekit.io/sk67opnzi/images/founder/dada.jpg"
                   alt="Shri Rajendra (Dada) Nagawade"
                   fill
                   style={{ objectFit: 'cover' }}

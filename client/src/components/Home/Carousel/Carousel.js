@@ -11,37 +11,37 @@ import Image from 'next/image';
 // Enhanced carousel images with captions and descriptions
 const manualCarouselImages = [
 	{ 
-		ImageLink: '/images/carousel/photo2.png', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/photo2.png', 
 		alt: 'Campus View',
 		caption: 'Welcome to SSNLC',
 		description: 'A premier institution for legal education'
 	},
 	{ 
-		ImageLink: '/images/carousel/collegepic(9).png', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_9_.png', 
 		//alt: 'Moot Court Hall',
 		//caption: 'State-of-the-art Moot Court',
 		//description: 'Where future legal professionals practice their craft'
 	},
 	{ 
-		ImageLink: '/images/carousel/collegepic(2).png', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_2_.png', 
 		//alt: 'Law Library',
 		//caption: 'Extensive Law Library',
 		//description: 'Access to comprehensive legal resources'
 	},
 	{ 
-		ImageLink: '/images/carousel/collegepic(1).jpg', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg', 
 		//alt: 'Modern Classroom',
 		//caption: 'Interactive Learning',
 		//description: 'Engaging classroom environment for effective learning'
 	},
 	{ 
-		ImageLink: '/images/carousel/photo8.jpg', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/photo8.jpg', 
 		//alt: 'College Events',
 		//caption: 'Vibrant Campus Life',
 		//description: 'Regular events and activities for holistic development'
 	},
 	{ 
-		ImageLink: '/images/carousel/photo9.jpg', 
+		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/photo9.jpg', 
 		//alt: 'Faculty Members',
 		//caption: 'Expert Faculty',
 		//description: 'Learn from experienced legal professionals'

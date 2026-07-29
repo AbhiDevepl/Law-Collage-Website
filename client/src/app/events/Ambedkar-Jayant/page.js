@@ -9,11 +9,11 @@ const eventData = {
   date: "April 14, 2025",
   images: [
     {
-      src: '/images/Ambedkar-Jayanti/15.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Ambedkar-Jayanti/15.jpg',
       alt: 'Ambedkar Jayanti Celebration Image 1'
     },
     {
-      src: '/images/Ambedkar-Jayanti/WhatsApp Image 2025-04-28 at 10.19.13_9947df83.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/Ambedkar-Jayanti/WhatsApp_Image_2025-04-28_at_10_19_13_9947df83.jpg',
       alt: 'Ambedkar Jayanti Celebration Image 2'
     }
   ],

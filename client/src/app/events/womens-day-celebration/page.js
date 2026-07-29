@@ -9,11 +9,11 @@ const eventData = {
   date: "8th March, 2025",
   images: [
     {
-      src: "/images/womens-day-celebration/1.jpg",
+      src: "https://ik.imagekit.io/sk67opnzi/images/womens-day-celebration/1.jpg",
       alt: "Women's Day Main Celebration"
     },
     {
-      src: "/images/womens-day-celebration/2.jpg",
+      src: "https://ik.imagekit.io/sk67opnzi/images/womens-day-celebration/2.jpg",
       alt: "Cultural Performances and Activities"
     }
   ],

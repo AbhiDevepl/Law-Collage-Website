@@ -32,7 +32,7 @@ export default function GoverningBody() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative h-[200px] w-full md:w-1/3">
               <Image
-                src="/collegelogonew.png"
+                src="https://ik.imagekit.io/sk67opnzi/collegelogonew.png"
                 alt="ssnlc"
                 fill
                 className="rounded-lg object-contain"

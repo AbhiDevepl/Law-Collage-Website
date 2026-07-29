@@ -6,7 +6,7 @@ export default function PageLoading() {
   return (
     <div role="status" aria-live="polite" className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm transition-opacity duration-300">
       <Image
-        src="/logo.jpeg"
+        src="https://ik.imagekit.io/sk67opnzi/logo.jpeg"
         alt="Loading"
         width={56}
         height={70}

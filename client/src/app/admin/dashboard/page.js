@@ -173,7 +173,7 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <Image
-              src="/collegelogo.png"
+              src="https://ik.imagekit.io/sk67opnzi/collegelogo.png"
               alt="SSNLC Logo"
               width={40}
               height={40}

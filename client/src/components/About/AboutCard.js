@@ -18,14 +18,11 @@ export default function AboutCard() {
                     <div className="bg-white rounded-xl shadow-lg p-8 border border-blue-100">
                         <div className="flex flex-col md:flex-row gap-8 items-center">
                             <div className="md:w-1/3 relative h-64 w-full overflow-hidden rounded-lg">
-                                <video 
-                                    className="absolute inset-0 w-full h-full object-cover" 
-                                    src='/Video/SSNLCCampus.mp4' 
-                                    poster='/images/carousel/collegepic(1).jpg'
-                                    autoPlay 
-                                    muted 
-                                    loop 
-                                    preload="metadata" 
+                                <Image
+                                    src='https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg'
+                                    alt='SSNLC Campus'
+                                    fill
+                                    className="object-cover rounded-lg"
                                 />
                             </div>
                             <div className="md:w-2/3">

@@ -9,7 +9,7 @@ const eventData = {
   date: "26th November, 2024",
   images: [
     {
-      src: '/images/constitution-day/1.jpg',
+      src: 'https://ik.imagekit.io/sk67opnzi/images/constitution-day/1.jpg',
       alt: 'Constitution Day Celebration'
     },
     {

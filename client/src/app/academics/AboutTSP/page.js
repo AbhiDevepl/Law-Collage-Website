@@ -22,7 +22,7 @@ export default function AboutTSP() {
           <div className="flex justify-center mb-8">
             <div className="bg-white shadow-xl p-4 border-4 border-blue-100 w-32 h-32 flex items-center justify-center">
               <Image
-                src="/images/TSP.jpeg"
+                src="https://ik.imagekit.io/sk67opnzi/images/TSP.jpeg"
                 alt="TSP"
                 width={100}
                 height={100}
