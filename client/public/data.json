@@ -1,13 +1,13 @@
 {
     "CarouselImages": [
         {
-            "ImageLink": "/images/collegepic(1).jpg"
+            "ImageLink": "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg"
         },
         {
-            "ImageLink": "/images/collegepic(2).jpg"
+            "ImageLink": "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_2_.png"
         },
         {
-            "ImageLink": "/images/collegepic(9).png"
+            "ImageLink": "https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_9_.png"
         },
         {
             "ImageLink": "/images/collegepic(13).jpg"
@@ -60,7 +60,7 @@
                     "qualification": "Ph.D. in Law",
                     "specialization": "Constitutional Law",
                     "email": "principal@ssnlc.edu.in",
-                    "image": "/images/faculty/principal.jpg"
+                    "image": "https://ik.imagekit.io/sk67opnzi/images/faculty/principal.jpg"
                 },
                 {
                     "name": "Ms. Sakshi Babu Prathamshetty",
@@ -68,7 +68,7 @@
                     "qualification": "LL.M.",
                     "specialization": "Civil Law",
                     "email": "sakshi.p@ssnlc.edu.in",
-                    "image": "/images/faculty/sakshi.jpg"
+                    "image": "https://ik.imagekit.io/sk67opnzi/images/faculty/sakshi.png"
                 },
                 {
                     "name": "Mr. Fate Purushottam Jagannath",
@@ -76,7 +76,7 @@
                     "qualification": "LL.M.",
                     "specialization": "Criminal Law",
                     "email": "fate.j@ssnlc.edu.in",
-                    "image": "/images/faculty/fate.jpg"
+                    "image": "https://ik.imagekit.io/sk67opnzi/images/faculty/fate.jpg"
                 }
             ]
         }
