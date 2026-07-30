@@ -16,7 +16,8 @@ export const FACULTY = [
     shortName: "Dr. Anjula Chowbe",
     role: "Principal",
     category: "teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/principal.jpg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/principal.jpg",
     specialization: "Constitutional Law",
     fields: [
       { label: "Designation", value: "Principal", type: "designation" },
@@ -55,7 +56,7 @@ export const FACULTY = [
         value: "HOD & Assistant Professor",
         type: "designation",
       },
-        { label: "Additional Designation", value: "HOD", type: "additional" },
+      { label: "Additional Designation", value: "HOD", type: "additional" },
       {
         label: "Education",
         value: "B.SL, LL.B, LL.M, DCL, DLL & LW",
@@ -83,7 +84,8 @@ export const FACULTY = [
     shortName: "Dr. Dipali Jawale",
     role: "Assistant Professor",
     category: "teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Depali.jpeg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Depali.jpeg",
     specialization: "Business Law",
     fields: [
       {
@@ -103,7 +105,11 @@ export const FACULTY = [
           "B.S.L. LL.B (ILS Law College, Pune, 2009), LL.M (Pune University, 2011), Ph.D (Sant Gadge Baba Amravati University, 2017)",
         type: "education",
       },
-      { label: "Specialization", value: "Business Law", type: "specialization" },
+      {
+        label: "Specialization",
+        value: "Business Law",
+        type: "specialization",
+      },
       { label: "Industrial Experience", value: null, type: "industry" },
       {
         label: "Teaching Experience",
@@ -126,7 +132,8 @@ export const FACULTY = [
     shortName: "Adv. Rupali Gole",
     role: "Assistant Professor",
     category: "teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Rupali.jpeg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Rupali.jpeg",
     specialization: "Corporate Law, Insolvency & Bankruptcy Law, Criminal Law",
     fields: [
       {
@@ -171,7 +178,8 @@ export const FACULTY = [
     shortName: "Arpit Ransing",
     role: "Admin",
     category: "non-teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Arpit.jpeg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Arpit.jpeg",
     specialization: null,
     fields: [
       { label: "Designation", value: "Admin", type: "designation" },
@@ -190,7 +198,8 @@ export const FACULTY = [
     shortName: "Kshitij Shitole",
     role: "Admin",
     category: "non-teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Kshitij.jpeg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Kshitij.jpeg",
     specialization: null,
     fields: [
       { label: "Designation", value: "Admin", type: "designation" },
@@ -209,7 +218,8 @@ export const FACULTY = [
     shortName: "Ashwini Purane",
     role: "Admin",
     category: "non-teaching",
-    image: "/images/faculty/placeholder-non-teaching.jpg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/profile.jpg",
     specialization: null,
     fields: [
       { label: "Designation", value: "Admin", type: "designation" },
@@ -228,7 +238,8 @@ export const FACULTY = [
     shortName: "Aditya Danave",
     role: "Admin",
     category: "non-teaching",
-    image: "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Aditya.jpeg",
+    image:
+      "https://ik.imagekit.io/ssnlc/client/public/images/faculty/Aditya.jpeg",
     specialization: null,
     fields: [
       { label: "Designation", value: "Admin", type: "designation" },
