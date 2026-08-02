@@ -1,20 +1,8 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Common/Footer/Footer";
 import Navbar from "@/components/Common/NavBar/NavBar";
 import NextTopLoader from 'nextjs-toploader';
 import Script from 'next/script';
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: 'swap',
-  fallback: ['system-ui', 'Arial', 'sans-serif'],
-  preload: true,
-  weight: ['400', '500', '600', '700'],
-  adjustFontFallback: true,
-  variable: '--font-inter',
-  timeout: 5000,
-});
 
 export const metadata = {
   title: 'SSNLC - Shri Shivajirao Nagawade Law College',
@@ -184,7 +172,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
       </head>
-      <body className={`${inter.className} font-[Inter,_Inter_Fallback,_system-ui,_sans-serif] min-h-screen antialiased`}>
+      <body className="min-h-screen font-sans antialiased">
         <div className="h-screen w-full fixed top-0 left-0 -z-50 bg-gradient-to-b from-white to-blue-100"></div>
         <NextTopLoader 
           color="#431d7a"

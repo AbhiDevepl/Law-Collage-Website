@@ -68,7 +68,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://server:5000/api/:path*',
+        destination: 'https://api.ssnlc.in/api/:path*',
       },
     ];
   },

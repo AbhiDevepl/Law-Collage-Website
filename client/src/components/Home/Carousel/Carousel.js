@@ -18,33 +18,33 @@ const manualCarouselImages = [
 	},
 	{ 
 		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_9_.png', 
-		//alt: 'Moot Court Hall',
-		//caption: 'State-of-the-art Moot Court',
-		//description: 'Where future legal professionals practice their craft'
+		alt: 'Moot Court Hall',
+		caption: 'State-of-the-art Moot Court',
+		description: 'Where future legal professionals practice their craft'
 	},
 	{ 
 		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_2_.png', 
-		//alt: 'Law Library',
-		//caption: 'Extensive Law Library',
-		//description: 'Access to comprehensive legal resources'
+		alt: 'Law Library',
+		caption: 'Extensive Law Library',
+		description: 'Access to comprehensive legal resources'
 	},
 	{ 
 		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/collegepic_1_.jpg', 
-		//alt: 'Modern Classroom',
-		//caption: 'Interactive Learning',
-		//description: 'Engaging classroom environment for effective learning'
+		alt: 'Modern Classroom',
+		caption: 'Interactive Learning',
+		description: 'Engaging classroom environment for effective learning'
 	},
 	{ 
 		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/photo8.jpg', 
-		//alt: 'College Events',
-		//caption: 'Vibrant Campus Life',
-		//description: 'Regular events and activities for holistic development'
+		alt: 'College Events',
+		caption: 'Vibrant Campus Life',
+		description: 'Regular events and activities for holistic development'
 	},
 	{ 
 		ImageLink: 'https://ik.imagekit.io/sk67opnzi/images/carousel/photo9.jpg', 
-		//alt: 'Faculty Members',
-		//caption: 'Expert Faculty',
-		//description: 'Learn from experienced legal professionals'
+		alt: 'Faculty Members',
+		caption: 'Expert Faculty',
+		description: 'Learn from experienced legal professionals'
 	},
 ];
 
