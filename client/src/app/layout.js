@@ -1,6 +1,7 @@
 import "./globals.css";
 import Footer from "@/components/Common/Footer/Footer";
 import Navbar from "@/components/Common/NavBar/NavBar";
+import NoticeLine from "@/components/Home/NoticeLine/NoticeLine";
 import NextTopLoader from 'nextjs-toploader';
 import Script from 'next/script';
 
@@ -184,6 +185,7 @@ export default function RootLayout({ children }) {
           speed={200}
         />
         <Navbar />
+        <NoticeLine />
         <main className="min-h-screen overflow-x-hidden mt-2">
           {children}
         </main>
