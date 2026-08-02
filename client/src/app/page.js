@@ -27,17 +27,13 @@ export default function page() {
   }, [])
 
   return (
+    
     <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section with Carousel */}
       <section className="relative mb-8">
         <div className="absolute inset-0 bg-black/30 z-10" /> {/* Overlay for better text visibility */}
         <CarouselCompo />
       </section>
-
-      {/* Announcements Section */}
-      <ScrollingAnnouncements />
-      
-     
 
       {/* Leadership Cards Section */}
       <LeadershipCards />
