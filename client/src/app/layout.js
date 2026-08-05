@@ -4,6 +4,7 @@ import Navbar from "@/components/Common/NavBar/NavBar";
 import NextTopLoader from 'nextjs-toploader';
 import Script from 'next/script';
 import ScrollingAnnouncements from '@/components/ScrollingAnnouncements';
+import ComplaintWidget from '@/components/ComplaintWidget/ComplaintWidget';
 
 export const metadata = {
   title: 'SSNLC - Shri Shivajirao Nagawade Law College',
@@ -179,6 +180,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <ComplaintWidget />
 
         <Script id="service-worker" strategy="lazyOnload">
           {`
