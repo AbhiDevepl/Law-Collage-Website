@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import '../committee.css';
 
-const councilMembers = [
+const councilMembers2025 = [
   { sr: 1, name: "SMT. JADHAV SAVITA YUVRAJ", designation: "COUNSELOR", email: "savitajadhav060@gmail.com" },
   { sr: 2, name: "MS. SUNITA PANNALAL PALIWAL", designation: "SOCIAL WORKER", email: "paliwalsunita@gmail.com" },
   { sr: 3, name: "MR. WAGHMARE ASHWIN ASHOK", designation: "STUDENT COUNCIL REPRESENTATIVE 1", email: "waghmare.ashwin2012@gmail.com" },
@@ -12,7 +12,24 @@ const councilMembers = [
   { sr: 7, name: "DR. ANJULA S. CHOWBE", designation: "VICE PRINCIPAL / SENIOR TEACHER", email: "anjulachowbe@gmail.com" },
 ];
 
+const councilMembers2026 = [
+  { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "PRINCIPAL", email: "s.snlcprincipal@gmail.com" },
+  { sr: 2, name: "SMT. JADHAV SAVITA YUVRAJ", designation: "COUNSELOR", email: "savitajadhav060@gmail.com" },
+  { sr: 3, name: "MS. SUNITA PANNALAL PALIWAL", designation: "SOCIAL WORKER", email: "paliwalsunita@gmail.com" },
+  { sr: 4, name: "MR. SANJIV KESHAV KARANDE", designation: "STUDENT COUNCIL REPRESENTATIVE 1", email: "sanjiv.karande@yahoo.com" },
+  { sr: 5, name: "MS. AKANKSHA AMOL KALE", designation: "STUDENT COUNCIL REPRESENTATIVE 2", email: "kaleakanksha9@gmail.com" },
+  { sr: 6, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "TEACHER REPRESENTATIVE", email: "pjfate96@gmail.com" },
+  { sr: 7, name: "DR. DIPALI VITTHALRAO JAWALE", designation: "TEACHER REPRESENTATIVE (FEMALE)", email: "drdipali.morey@gmail.com" },
+];
+
 const StudentCouncil = () => {
+  const [activeYear, setActiveYear] = useState('2026-27');
+  const membersByYear = {
+    '2026-27': councilMembers2026,
+    '2025-26': councilMembers2025,
+  };
+  const activeMembers = membersByYear[activeYear];
+
   return (
     <div className="committee-detail-page">
       <div className="committee-header">
@@ -21,6 +38,10 @@ const StudentCouncil = () => {
       <div className="committee-content">
         <section className="members">
           <h2>Committee Members</h2>
+          <div className="year-tabs">
+            <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+            <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+          </div>
           <div className="desktop-view">
             <table className="members-table">
               <thead>
@@ -32,7 +53,7 @@ const StudentCouncil = () => {
                 </tr>
               </thead>
               <tbody>
-                {councilMembers.map((member) => (
+                {activeMembers.map((member) => (
                   <tr key={`-`}>
                     <td data-label="Sr No.">{member.sr}</td>
                     <td data-label="Member Name">{member.name}</td>
@@ -45,7 +66,7 @@ const StudentCouncil = () => {
           </div>
           <div className="mobile-view">
             <div className="member-cards">
-              {councilMembers.map((member) => (
+              {activeMembers.map((member) => (
                 <div className="member-card" key={`-`}>
                   <div className="card-row">
                     <div className="card-label">Sr No.</div>

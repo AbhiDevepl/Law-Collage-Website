@@ -1,8 +1,8 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import '../committee.css';
 
-const antiRaggingMembers = [
+const antiRaggingMembers2025 = [
     { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "anjulachowbe@gmail.com" },
     { sr: 2, name: "MS. SAKSHI BABU PRATHAMSHETTY", designation: "CO-ORDINATOR (IQAC)", email: "prathamshettysakshi111@gmail.com" },
     { sr: 3, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "IN-CHARGE", email: "pjfate96@gmai.lcom" },
@@ -11,7 +11,23 @@ const antiRaggingMembers = [
     { sr: 6, name: "MS. ASHWINI SOMWANSHI", designation: "MEMBER 2", email: "ashwinis@gmail.com" },
 ];
 
+const antiRaggingMembers2026 = [
+    { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "s.snlcprincipal@gmail.com" },
+    { sr: 2, name: "MS. RUPALI DNYANESHWARAO GOLE", designation: "CO-ORDINATOR (IQAC)", email: "rupgole0511@gmail.com" },
+    { sr: 3, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "IN-CHARGE", email: "pjfate96@gmail.com" },
+    { sr: 4, name: "SHRI. AMOL BHALCHANDRA NAGAWADE", designation: "MANAGEMENT REPRESENTATIVE", email: "er.amol1841988@gmail.com" },
+    { sr: 5, name: "SMT. JADHAV SAVITA YURAJ", designation: "MEMBER 1", email: "savitajadhav060@gmail.com" },
+    { sr: 6, name: "DR. DIPALI VITTHALRAO JAWALE", designation: "MEMBER 2", email: "drdipali.morey@gmail.com" },
+];
+
 const AntiRagging = () => {
+    const [activeYear, setActiveYear] = useState('2026-27');
+    const membersByYear = {
+        '2026-27': antiRaggingMembers2026,
+        '2025-26': antiRaggingMembers2025,
+    };
+    const activeMembers = membersByYear[activeYear];
+
     return (
         <div className="committee-detail-page">
             <div className="committee-header">
@@ -20,6 +36,10 @@ const AntiRagging = () => {
             <div className="committee-content">
                 <section className="members">
                     <h2>Committee Members</h2>
+                    <div className="year-tabs">
+                        <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+                        <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+                    </div>
                     <div className="desktop-view">
                         <table className="members-table">
                             <thead>
@@ -31,7 +51,7 @@ const AntiRagging = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {antiRaggingMembers.map((member) => (
+                                {activeMembers.map((member) => (
                                     <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
@@ -44,7 +64,7 @@ const AntiRagging = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {antiRaggingMembers.map((member) => (
+                            {activeMembers.map((member) => (
                                 <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>

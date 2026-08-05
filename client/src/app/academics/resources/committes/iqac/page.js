@@ -1,7 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 
-const iqacMembers = [
+const iqacMembers2025 = [
   { sr: 1, name: "SHRI. JAYANT BAPURAO SHINDE", designation: "ACADEMIC EXTERNAL EXPERT", email: "jayshinde@gmail.com" },
   { sr: 2, name: "MR. ARPIT PETER RANSING", designation: "ADMINISTRATIVE", email: "arpit.ransing@gmail.com" },
   { sr: 3, name: "MS. SAKSHI BABU PRATHAMSHETTY", designation: "CO-ORDINATOR (IQAC)", email: "prathamshettysakshi111@gmail.com" },
@@ -11,7 +11,24 @@ const iqacMembers = [
   { sr: 7, name: "SHRI.FATE PURUSHOTTAM JAGANNATH", designation: "SENIOR TEACHER", email: "pjfate96@gmail.com" },
 ];
 
+const iqacMembers2026 = [
+  { sr: 1, name: "SHRI. JAYANT BAPURAO SHINDE", designation: "ACADEMIC EXTERNAL EXPERT", email: "jayshinde@gmail.com" },
+  { sr: 2, name: "MS. RUPALI DNYANESHWARAO GOLE", designation: "CO-ORDINATOR (IQAC)", email: "rupgole0511@gmail.com" },
+  { sr: 3, name: "SHRI. SUNIL KANTLAL BHOS", designation: "INDUSTRY EXPERT", email: "bhossunil@gmail.com" },
+  { sr: 4, name: "SHRI. DIGVIJAY RAJENDRA NAGAWADE", designation: "MANAGEMENT REPRESENTATIVE", email: "digvijay.nagawade@gmail.com" },
+  { sr: 5, name: "DR. SATISHCHANDRTA G. SURYAWANSHI", designation: "REGISTRAR", email: "suryawanshi.sg@gmail.com" },
+  { sr: 6, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "SENIOR TEACHER", email: "pjfate96@gmail.com" },
+  { sr: 7, name: "MR. ARPIT PETER RANSING", designation: "ADMINISTRATIVE", email: "arpit.ransing@gmail.com" },
+];
+
 const IQAC = () => {
+  const [activeYear, setActiveYear] = useState('2026-27');
+  const membersByYear = {
+    '2026-27': iqacMembers2026,
+    '2025-26': iqacMembers2025,
+  };
+  const activeMembers = membersByYear[activeYear];
+
   return (
     <div className="committee-detail-page">
       <div className="committee-header">
@@ -20,6 +37,10 @@ const IQAC = () => {
       <div className="committee-content">
         <section className="members">
           <h2>Committee Members</h2>
+          <div className="year-tabs">
+            <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+            <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+          </div>
           <div className="desktop-view">
             <table className="members-table">
               <thead>
@@ -31,7 +52,7 @@ const IQAC = () => {
                 </tr>
               </thead>
               <tbody>
-                {iqacMembers.map((member) => (
+                {activeMembers.map((member) => (
                   <tr key={`-`}>
                     <td data-label="Sr No.">{member.sr}</td>
                     <td data-label="Member Name">{member.name}</td>
@@ -44,7 +65,7 @@ const IQAC = () => {
           </div>
           <div className="mobile-view">
             <div className="member-cards">
-              {iqacMembers.map((member) => (
+              {activeMembers.map((member) => (
                 <div className="member-card" key={`-`}>
                   <div className="card-row">
                     <div className="card-label">Sr No.</div>
@@ -122,6 +143,33 @@ const IQAC = () => {
           height: 3px;
           background-color: #1a237e;
           border-radius: 2px;
+        }
+
+        .year-tabs {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .year-tabs button {
+          padding: 0.6rem 1.5rem;
+          border: 1px solid #1a237e;
+          background: white;
+          color: #1a237e;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 1rem;
+          font-weight: 600;
+          transition: background-color 0.3s ease;
+        }
+
+        .year-tabs button:hover {
+          background: #e8eaf6;
+        }
+
+        .year-tabs button.active {
+          background: #1a237e;
+          color: white;
         }
 
         .members-table {

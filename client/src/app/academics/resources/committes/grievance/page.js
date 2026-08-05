@@ -1,14 +1,27 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import '../committee.css';
 
-const grievanceMembers = [
+const grievanceMembers2025 = [
     { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "anjulachowbe@gmail.com" },
     { sr: 2, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "MEMBER 1", email: "pjfate96@gmail.com" },
     { sr: 3, name: "MS. SAKSHI BABU PRATHAMSHETTY", designation: "MEMBER 2", email: "prathamshettysakshi111@gmail.com" }
 ];
 
+const grievanceMembers2026 = [
+    { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "s.snlcprincipal@gmail.com" },
+    { sr: 2, name: "SHRI. FATE PURUSHOTTAM JAGANNATH", designation: "MEMBER 1", email: "pjfate96@gmail.com" },
+    { sr: 3, name: "DR. DIPALI MORE", designation: "MEMBER 2", email: "drdipali.morey@gmail.com" }
+];
+
 const Grievance = () => {
+    const [activeYear, setActiveYear] = useState('2026-27');
+    const membersByYear = {
+        '2026-27': grievanceMembers2026,
+        '2025-26': grievanceMembers2025,
+    };
+    const activeMembers = membersByYear[activeYear];
+
     return (
         <div className="committee-detail-page">
             <div className="committee-header">
@@ -17,6 +30,10 @@ const Grievance = () => {
             <div className="committee-content">
                 <section className="members">
                     <h2>Committee Members</h2>
+                    <div className="year-tabs">
+                        <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+                        <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+                    </div>
                     <div className="desktop-view">
                         <table className="members-table">
                             <thead>
@@ -28,7 +45,7 @@ const Grievance = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {grievanceMembers.map((member) => (
+                                {activeMembers.map((member) => (
                                     <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
@@ -41,7 +58,7 @@ const Grievance = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {grievanceMembers.map((member) => (
+                            {activeMembers.map((member) => (
                                 <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>

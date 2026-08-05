@@ -1,7 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 
-const cdcMembers = [
+const cdcMembers2025 = [
     { sr: 1, name: "SHRI. RAJENDRA SHIVAJIRAO NAGAWADE", designation: "CHAIRPERSON OF THE MANAGEMENT", email: "tspshrigonda@gmail.com" },
     { sr: 2, name: "MS. SAKSHI BABU PRATHAMSHETTY", designation: "CO-ORDINATOR (IQAC)", email: "prathamshettysakshi111@gmail.com" },
     { sr: 3, name: "DR. ANJULA S. CHOWBE", designation: "HEAD OF DEPARTMENT", email: "anjulachowbe@gmail.com" },
@@ -14,7 +14,27 @@ const cdcMembers = [
     { sr: 10, name: "SHRI. VAIBHAV S. INGAVALE", designation: "NON-TEACHING", email: "vaibhavingavale07@gmail.com" },
 ];
 
+const cdcMembers2026 = [
+    { sr: 1, name: "SHRI. RAJENDRA SHIVAJIRAO NAGAWADE", designation: "CHAIRPERSON OF THE MANAGEMENT", email: "tspshrigonda@gmail.com" },
+    { sr: 2, name: "MRS. ANURADHA RAJENDRA NAGAWADE", designation: "SECRETARY OF THE MANAGEMENT", email: "anuradhanagawade@gmail.com" },
+    { sr: 3, name: "MR. DIGVIJAY RAJENDRA NAGAWADE", designation: "LOCAL MEMBERS", email: "digvijay.nagawade@gmail.com" },
+    { sr: 4, name: "DR. ANJULA S. CHOWBE", designation: "PRINCIPAL", email: "s.snlcprincipal@gmail.com" },
+    { sr: 5, name: "MS. RUPALI DNYANESHWARAO GOLE", designation: "CO-ORDINATOR (IQAC)", email: "rupgole0511@gmail.com" },
+    { sr: 6, name: "MR. FATE PURUSHOTTAM JAGANNATH", designation: "HEAD OF DEPARTMENT", email: "pjfate96@gmail.com" },
+    { sr: 7, name: "DR. DIPALI VITTHALRAO JAWALE", designation: "WOMEN TEACHERS", email: "drdipali.morey@gmail.com" },
+    { sr: 8, name: "MR. FATE PURUSHOTTAM JAGANNATH", designation: "TEACHERS", email: "pjfate96@gmail.com" },
+    { sr: 9, name: "MR. KSHITIJ SHARAD SHITOLE", designation: "NON-TEACHING", email: "shitolekshitij096@gmail.com" },
+    { sr: 10, name: "MR. VISHAL JALINDAR RANDIVE", designation: "SECRETARY OF COLLEGE STUDENT COUNCIL", email: "vishalrandive291@gmail.com" },
+];
+
 const CDC = () => {
+    const [activeYear, setActiveYear] = useState('2026-27');
+    const membersByYear = {
+        '2026-27': cdcMembers2026,
+        '2025-26': cdcMembers2025,
+    };
+    const activeMembers = membersByYear[activeYear];
+
     return (
         <div className="committee-detail-page">
             <div className="committee-header">
@@ -23,6 +43,10 @@ const CDC = () => {
             <div className="committee-content">
                 <section className="members">
                     <h2>Committee Members</h2>
+                    <div className="year-tabs">
+                        <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+                        <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+                    </div>
                     <div className="desktop-view">
                         <table className="members-table">
                             <thead>
@@ -34,7 +58,7 @@ const CDC = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cdcMembers.map((member) => (
+                                {activeMembers.map((member) => (
                                     <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
@@ -47,7 +71,7 @@ const CDC = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {cdcMembers.map((member) => (
+                            {activeMembers.map((member) => (
                                 <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>
@@ -125,6 +149,33 @@ const CDC = () => {
                     height: 3px;
                     background-color: #1a237e;
                     border-radius: 2px;
+                }
+
+                .year-tabs {
+                    display: flex;
+                    gap: 0.5rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .year-tabs button {
+                    padding: 0.6rem 1.5rem;
+                    border: 1px solid #1a237e;
+                    background: white;
+                    color: #1a237e;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease;
+                }
+
+                .year-tabs button:hover {
+                    background: #e8eaf6;
+                }
+
+                .year-tabs button.active {
+                    background: #1a237e;
+                    color: white;
                 }
 
                 .members-table {

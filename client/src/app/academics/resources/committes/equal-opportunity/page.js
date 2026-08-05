@@ -1,14 +1,27 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import '../committee.css';
 
-const equalOpportunityMembers = [
+const equalOpportunityMembers2025 = [
     { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "anjulachowbe@gmail.com" },
     { sr: 2, name: "SHRI. AMOL BHALCHANDRA NAGAWADE", designation: "MEMBER", email: "er.amol1841988@gmail.com" },
     { sr: 3, name: "SHRI. PRUTHVIRAJ RAJENDRA NAGAWADE", designation: "VICE-CHAIRMAN", email: "pruthvirajnagawade@gmail.com" }
 ];
 
+const equalOpportunityMembers2026 = [
+    { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "s.snlcprincipal@gmail.com" },
+    { sr: 2, name: "SHRI. DIGVIJAY RAJENDRA NAGAWADE", designation: "VICE-CHAIRMAN", email: "digvijay.nagawade@gmail.com" },
+    { sr: 3, name: "SHRI. AMOL BHALCHANDRA NAGAWADE", designation: "MEMBER", email: "er.amol1841988@gmail.com" }
+];
+
 const EqualOpportunity = () => {
+    const [activeYear, setActiveYear] = useState('2026-27');
+    const membersByYear = {
+        '2026-27': equalOpportunityMembers2026,
+        '2025-26': equalOpportunityMembers2025,
+    };
+    const activeMembers = membersByYear[activeYear];
+
     return (
         <div className="committee-detail-page">
             <div className="committee-header">
@@ -17,6 +30,10 @@ const EqualOpportunity = () => {
             <div className="committee-content">
                 <section className="members">
                     <h2>Committee Members</h2>
+                    <div className="year-tabs">
+                        <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+                        <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+                    </div>
                     <div className="desktop-view">
                         <table className="members-table">
                             <thead>
@@ -28,7 +45,7 @@ const EqualOpportunity = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {equalOpportunityMembers.map((member) => (
+                                {activeMembers.map((member) => (
                                     <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
@@ -41,7 +58,7 @@ const EqualOpportunity = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {equalOpportunityMembers.map((member) => (
+                            {activeMembers.map((member) => (
                                 <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>

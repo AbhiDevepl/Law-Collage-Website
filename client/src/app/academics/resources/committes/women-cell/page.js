@@ -1,8 +1,8 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import '../committee.css';
 
-const womenCellMembers = [
+const womenCellMembers2025 = [
     { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "anjulachowbe@gmail.com" },
     { sr: 2, name: "MS. SAKSHI BABU PRATHAMSHETTY", designation: "CO-ORDINATOR (IQAC)", email: "prathamshettysakshi111@gmail.com" },
     { sr: 3, name: "SMT. JADHAV SAVITA YUVRAJ", designation: "IN-CHARGE", email: "savitajadhav060@gmail.com" },
@@ -11,7 +11,23 @@ const womenCellMembers = [
     { sr: 6, name: "MS. SUNITA PANNALAL PALIWAL", designation: "SOCIAL WORKER", email: "paliwalsunita@gmail.com" }
 ];
 
+const womenCellMembers2026 = [
+    { sr: 1, name: "DR. ANJULA S. CHOWBE", designation: "CHAIRPERSON", email: "s.snlcprincipal@gmail.com" },
+    { sr: 2, name: "MS. RUPALI DNYANESHWARAO GOLE", designation: "CO-ORDINATOR (IQAC)", email: "rupgole0511@gmail.com" },
+    { sr: 3, name: "MRS. JYOTI BHOPE", designation: "IN-CHARGE", email: "bhopejyoti@gmail.com" },
+    { sr: 4, name: "DR. DIPALI VITTHALRAO JAWALE", designation: "MEMBER 1", email: "drdipali.morey@gmail.com" },
+    { sr: 5, name: "MS. KOTHARE SAKSHI HOUSRAO", designation: "MEMBER 2", email: "sakshikothare12@gmail.com" },
+    { sr: 6, name: "MS. SUNITA PANNALAL PALIWAL", designation: "SOCIAL WORKER", email: "paliwalsunita@gmail.com" }
+];
+
 const WomenCell = () => {
+    const [activeYear, setActiveYear] = useState('2026-27');
+    const membersByYear = {
+        '2026-27': womenCellMembers2026,
+        '2025-26': womenCellMembers2025,
+    };
+    const activeMembers = membersByYear[activeYear];
+
     return (
         <div className="committee-detail-page">
             <div className="committee-header">
@@ -20,6 +36,10 @@ const WomenCell = () => {
             <div className="committee-content">
                 <section className="members">
                     <h2>Committee Members</h2>
+                    <div className="year-tabs">
+                        <button onClick={() => setActiveYear('2026-27')} className={activeYear === '2026-27' ? 'active' : ''}>2026-27</button>
+                        <button onClick={() => setActiveYear('2025-26')} className={activeYear === '2025-26' ? 'active' : ''}>2025-26</button>
+                    </div>
                     <div className="desktop-view">
                         <table className="members-table">
                             <thead>
@@ -31,7 +51,7 @@ const WomenCell = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {womenCellMembers.map((member) => (
+                                {activeMembers.map((member) => (
                                     <tr key={`-`}>
                                         <td data-label="Sr No.">{member.sr}</td>
                                         <td data-label="Member Name">{member.name}</td>
@@ -44,7 +64,7 @@ const WomenCell = () => {
                     </div>
                     <div className="mobile-view">
                         <div className="member-cards">
-                            {womenCellMembers.map((member) => (
+                            {activeMembers.map((member) => (
                                 <div className="member-card" key={`-`}>
                                     <div className="card-row">
                                         <div className="card-label">Sr No.</div>
