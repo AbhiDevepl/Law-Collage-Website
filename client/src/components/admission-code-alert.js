@@ -61,7 +61,7 @@ export default function AdmissionCodeAlert() {
               <button
                 onClick={() => setShowBanner(false)}
                 aria-label="Dismiss banner"
-                className="text-blue-300 hover:text-white transition-colors"
+                className="text-blue-300 hover:text-white transition-colors p-2"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -78,12 +78,12 @@ export default function AdmissionCodeAlert() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-gradient-to-b from-blue-950 to-blue-900 rounded-2xl shadow-2xl border border-amber-400/30 overflow-hidden"
+            className="relative w-full max-w-md max-h-[90vh] overflow-y-auto bg-gradient-to-b from-blue-950 to-blue-900 rounded-2xl shadow-2xl border border-amber-400/30"
           >
             <button
               onClick={closeModal}
               aria-label="Close"
-              className="absolute top-3 right-3 text-blue-300 hover:text-white transition-colors z-10"
+              className="absolute top-3 right-3 text-blue-300 hover:text-white transition-colors z-10 p-2"
             >
               <X className="w-5 h-5" />
             </button>
@@ -106,7 +106,7 @@ export default function AdmissionCodeAlert() {
               <p className="text-blue-950 text-xs font-bold uppercase tracking-wide mb-2">
                 Official College Choice Code
               </p>
-              <p className="text-blue-900 text-4xl font-extrabold tracking-wider mb-3">
+              <p className="text-blue-900 text-3xl sm:text-4xl font-extrabold tracking-wider mb-3">
                 {COLLEGE_CODE}
               </p>
               <button

@@ -83,7 +83,7 @@ const ComplaintWidget = () => {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close complaint panel"
-              className="rounded-full p-1 transition-colors hover:bg-white/20"
+              className="rounded-full p-2 transition-colors hover:bg-white/20"
             >
               <X size={20} />
             </button>

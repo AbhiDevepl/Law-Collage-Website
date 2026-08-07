@@ -7,7 +7,7 @@ export default function ContactButton() {
   
   return (
     <button 
-      className={`bg-white text-indigo-700 px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 shadow-md ${
+      className={`bg-white text-indigo-700 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 shadow-md ${
         isActive ? 'bg-indigo-100 shadow-lg scale-105' : ''
       } hover:bg-indigo-100 hover:shadow-lg hover:scale-105 active:bg-indigo-200 active:scale-95`}
       onMouseEnter={() => setIsActive(true)}

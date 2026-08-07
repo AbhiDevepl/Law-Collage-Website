@@ -65,7 +65,7 @@ export default function DepartmentSection() {
                       </p>
 
                       {/* Features Grid */}
-                      <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         {dept.features.map((feature) => (
                           <div key={feature} className="flex items-center">
                             <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

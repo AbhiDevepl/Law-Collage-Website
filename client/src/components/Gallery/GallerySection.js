@@ -109,13 +109,13 @@ export default function GallerySection() {
             <div className="relative max-w-4xl w-full max-h-[90vh]">
               <button 
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white hover:text-blue-400 transition-colors duration-300"
+                className="absolute -top-12 right-0 text-white hover:text-blue-400 transition-colors duration-300 w-10 h-10 flex items-center justify-center"
               >
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <div className="relative h-[80vh]">
+              <div className="relative h-[70vh] md:h-[80vh]">
                 <OptimizedImage
                   src={selectedImage.src}
                   alt={selectedImage.alt}

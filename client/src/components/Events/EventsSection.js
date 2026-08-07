@@ -93,7 +93,7 @@ export default function EventsSection() {
 
         {/* Category Filter */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-lg p-1 shadow-md">
+          <div className="inline-flex flex-wrap justify-center gap-1 bg-white rounded-lg p-1 shadow-md">
             {categories.map((category) => (
               <button
                 key={category}

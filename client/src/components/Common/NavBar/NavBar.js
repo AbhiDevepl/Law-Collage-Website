@@ -146,7 +146,7 @@ export default function Navbar() {
           <div className="container mx-auto max-w-7xl">
             <div 
               id="navbar-links"
-              className={`${navOpen ? 'max-h-[80vh] py-4 mt-2 opacity-100' : 'max-h-0 py-0 opacity-0'} md:max-h-full md:py-0 md:mt-0 md:opacity-100 transition-all duration-300 ease-in-out overflow-hidden md:overflow-visible w-full flex-col md:flex md:flex-row md:justify-center`}
+              className={`${navOpen ? 'max-h-[80vh] py-4 mt-2 opacity-100' : 'max-h-0 py-0 opacity-0'} md:max-h-full md:py-0 md:mt-0 md:opacity-100 transition-all duration-300 ease-in-out overflow-y-auto md:overflow-visible w-full flex-col md:flex md:flex-row md:justify-center`}
             >
               <ul className="flex flex-col md:flex-row md:items-center md:justify-center w-full space-y-2 md:space-y-0 md:space-x-6 px-4 md:px-0 text-center">
                 <NavLinks setNavOpen={setNavOpen} />

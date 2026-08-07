@@ -49,7 +49,7 @@ export default function GalleryPage() {
           >
             <div className="relative max-w-4xl w-full max-h-[90vh]">
               <button 
-                className="absolute -top-10 right-0 text-white text-2xl hover:text-gray-300"
+                className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 w-10 h-10 flex items-center justify-center"
                 onClick={() => setSelectedImage(null)}
               >
                 ×

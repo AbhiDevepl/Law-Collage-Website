@@ -232,7 +232,7 @@ export default function AdminDashboard() {
         
         {/* Announcements */}
         <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-wrap gap-2 justify-between items-center mb-6">
             <h2 className="text-lg font-semibold text-gray-900">Announcements</h2>
             <button 
               onClick={() => {
@@ -292,7 +292,7 @@ export default function AdminDashboard() {
                     required
                   ></textarea>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-2">
                   <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">{editingId ? 'Update Announcement' : 'Create Announcement'}</button>
                   <button type="button" onClick={() => { setShowForm(false); setEditingId(null); setAnnouncementText(''); }} className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors">Cancel</button>
                 </div>

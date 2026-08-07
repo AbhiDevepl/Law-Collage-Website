@@ -419,7 +419,7 @@ export default function ImportantLinksAdmin() {
                         <div className="flex space-x-2">
                           <button
                             onClick={() => handleEditClick(link)}
-                            className="text-indigo-600 hover:text-indigo-900"
+                            className="text-indigo-600 hover:text-indigo-900 py-2 px-1"
                           >
                             Edit
                           </button>
@@ -427,13 +427,13 @@ export default function ImportantLinksAdmin() {
                             <div className="flex items-center space-x-2">
                               <button
                                 onClick={() => handleDeleteLink(link._id)}
-                                className="text-red-600 hover:text-red-900"
+                                className="text-red-600 hover:text-red-900 py-2 px-1"
                               >
                                 Confirm
                               </button>
                               <button
                                 onClick={() => setShowDeleteConfirm(null)}
-                                className="text-gray-600 hover:text-gray-900"
+                                className="text-gray-600 hover:text-gray-900 py-2 px-1"
                               >
                                 Cancel
                               </button>
@@ -441,7 +441,7 @@ export default function ImportantLinksAdmin() {
                           ) : (
                             <button
                               onClick={() => setShowDeleteConfirm(link._id)}
-                              className="text-red-600 hover:text-red-900"
+                              className="text-red-600 hover:text-red-900 py-2 px-1"
                             >
                               Delete
                             </button>
