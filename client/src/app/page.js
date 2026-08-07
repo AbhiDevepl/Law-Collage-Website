@@ -10,6 +10,7 @@ import ImportantLinks from '@/components/Home/ImportantLinks/ImportantLinks';
 import dynamic from 'next/dynamic';
 import ScrollingAnnouncements from '@/components/ScrollingAnnouncements';
 import LeadershipCards from '@/components/Home/LeadershipCards';
+import AdmissionCodeAlert from "@/components/admission-code-alert";
 // Dynamically import components that are further down the page
 const LazyAccordion = dynamic(() => import('@/components/Home/Accordion/Accordion'));
 const LazyReachUsForm = dynamic(() => import('@/components/ReachUs/ReachUsForm'));
@@ -29,6 +30,9 @@ export default function page() {
   return (
     
     <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      {/* Admission Code Alert — sticky banner + one-time modal */}
+      <AdmissionCodeAlert />
+
       {/* Hero Section with Carousel */}
       <section className="relative mb-8">
         <div className="absolute inset-0 bg-black/30 z-10" /> {/* Overlay for better text visibility */}
