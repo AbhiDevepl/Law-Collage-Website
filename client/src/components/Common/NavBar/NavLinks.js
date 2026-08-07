@@ -82,6 +82,10 @@ function NavLinks({ setNavOpen }) {
           title: "Syllabus",
           path: "/academics/departments/syllabus",
         },
+        {
+          title: "Fees Structure",
+          path: "/academics/fees",
+        },
       ],
     },
     {
@@ -112,7 +116,7 @@ function NavLinks({ setNavOpen }) {
         },
         {
           title: "Prospectus",
-          path: "/academics/departments/llb",
+          path: "/academics/departments/llb#prospectus",
         },
         {
           title: "Admission Enquiry",
